@@ -2333,3 +2333,7 @@ msgstr "Il y avait un problème avec la base de données: "
 
 #~ msgid "Valider!"
 #~ msgstr "Chercher"
+
+#: ajax_htmldata/getProductDetails.php:272 @annelhote
+msgid "Language:"
+msgstr "Langue:"

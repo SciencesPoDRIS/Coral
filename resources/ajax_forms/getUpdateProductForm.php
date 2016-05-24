@@ -20,6 +20,11 @@
 		$resourceTypeObj = new ResourceType();
 		$resourceTypeArray = $resourceTypeObj->allAsArray();
 
+		// @annelhote : get all languages for output in drop down
+		$resourceLanguageArray = array();
+		$resourceLanguageObj = new ResourceLanguage();
+		$resourceLanguageArray = $resourceLanguageObj->sortedArray();
+
     //get parents resources
     $sanitizedInstance = array();
     $instance = new Resource();
@@ -105,6 +110,25 @@
 					<tr>
 					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='resourceAltURL'><?php echo _("Alt URL:");?></label></td>
 					<td><input type='text' id='resourceAltURL' name='resourceAltURL' value = '<?php echo $resource->resourceAltURL; ?>' style='width:260px;' class='changeInput'  /></td>
+					</tr>
+
+					<!-- @annelhote : Add resource's language -->
+					<tr>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='resourceLanguageID'><?php echo _("Language:");?></label></td>
+					<td>
+					<select name='resourceLanguageID' id='resourceLanguageID' style='width:100px;' class='changeSelect'>
+					<option value=''></option>
+					<?php
+					foreach ($resourceLanguageArray as $resourceLanguage){
+						if (!(trim(strval($resourceLanguage['resourceLanguageID'])) != trim(strval($resource->resourceLanguageID)))){
+							echo "<option value='" . $resourceLanguage['resourceLanguageID'] . "' selected>" . $lang_name->getNameLang($resourceLanguage['shortName']) . "</option>\n";
+						}else{
+							echo "<option value='" . $resourceLanguage['resourceLanguageID'] . "'>" . $lang_name->getNameLang($resourceLanguage['shortName']) . "</option>\n";
+						}
+					}
+					?>
+					</select>
+					</td>
 					</tr>
 
 					</table>

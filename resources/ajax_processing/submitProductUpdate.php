@@ -13,6 +13,8 @@
 		$resource->resourceTypeID 		= $_POST['resourceTypeID'];
 		$resource->resourceURL 			= $_POST['resourceURL'];
 		$resource->resourceAltURL 		= $_POST['resourceAltURL'];
+		// @annelhote : Update resource's language
+		$resource->resourceLanguageID 	= $_POST['resourceLanguageID'];
 
     $isbnarray = json_decode($_POST['isbnOrISSN']);
     $resource->setIsbnOrIssn($isbnarray);
