@@ -64,7 +64,7 @@ $_SESSION['ref_script']=$currentPage;
 
 	<table class='borderedFormTable' style="width:150px">
 
-	<!-- ALH : Put alphabetical order as first field -->
+	<!-- @annelhote : Put alphabetical order as first field -->
 	<tr>
 	<td class='searchRow'><label for='searchFirstLetter'><b><?php echo _("Starts with");?></b></label>
 	<br />
