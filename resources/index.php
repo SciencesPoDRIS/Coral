@@ -64,6 +64,32 @@ $_SESSION['ref_script']=$currentPage;
 
 	<table class='borderedFormTable' style="width:150px">
 
+	<!-- ALH : Put alphabetical order as first field -->
+	<tr>
+	<td class='searchRow'><label for='searchFirstLetter'><b><?php echo _("Starts with");?></b></label>
+	<br />
+	<?php
+	$resource = new Resource();
+
+	$alphArray = range('A','Z');
+	$resAlphArray = $resource->getAlphabeticalList;
+
+	foreach ($alphArray as $letter){
+		if ((isset($resAlphArray[$letter])) && ($resAlphArray[$letter] > 0)){
+			echo "<span class='searchLetter' id='span_letter_" . $letter . "'><a href='javascript:setStartWith(\"" . $letter . "\")'>" . $letter . "</a></span>";
+			if ($letter == "N") echo "<br />";
+		}else{
+			echo "<span class='searchLetter'>" . $letter . "</span>";
+			if ($letter == "N") echo "<br />";
+		}
+	}
+
+
+	?>
+	<br />
+	</td>
+	</tr>
+
 	<tr>
 	<td class='searchRow'><label for='searchName'><b><?php echo _("Name (contains)");?></b></label>
 	<br />
@@ -306,31 +332,6 @@ $_SESSION['ref_script']=$currentPage;
 
 	?>
 	</select>
-	</td>
-	</tr>
-	
-	<tr>
-	<td class='searchRow'><label for='searchFirstLetter'><b><?php echo _("Starts with");?></b></label>
-	<br />
-	<?php
-	$resource = new Resource();
-
-	$alphArray = range('A','Z');
-	$resAlphArray = $resource->getAlphabeticalList;
-
-	foreach ($alphArray as $letter){
-		if ((isset($resAlphArray[$letter])) && ($resAlphArray[$letter] > 0)){
-			echo "<span class='searchLetter' id='span_letter_" . $letter . "'><a href='javascript:setStartWith(\"" . $letter . "\")'>" . $letter . "</a></span>";
-			if ($letter == "N") echo "<br />";
-		}else{
-			echo "<span class='searchLetter'>" . $letter . "</span>";
-			if ($letter == "N") echo "<br />";
-		}
-	}
-
-
-	?>
-	<br />
 	</td>
 	</tr>
 
