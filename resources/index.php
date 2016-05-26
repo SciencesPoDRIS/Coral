@@ -595,6 +595,8 @@ $_SESSION['ref_script']=$currentPage;
 </div>
 <br />
 <script type="text/javascript" src="js/index.js"></script>
+<!-- @annelhote : add the javascript functions to directly update a product -->
+<script type="text/javascript" src="js/resource.js"></script>
 <script type='text/javascript'>
 <?php
   //used to default to previously selected values when back button is pressed

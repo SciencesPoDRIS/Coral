@@ -1,4 +1,5 @@
 <?php
+
 	Resource::setSearch($_POST['search']);
 
 	$queryDetails = Resource::getSearchDetails();
@@ -115,6 +116,7 @@
 			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("Date Created");?></td><td style='width:10px;vertical-align:top;'><a href='javascript:setOrder("R.createDate","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;vertical-align:top;'><a href='javascript:setOrder("R.createDate","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
 			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("Acquisition Type");?></td><td style='width:10px;vertical-align:top;'><a href='javascript:setOrder("acquisitionType","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;vertical-align:top;'><a href='javascript:setOrder("acquisitionType","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
 			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("Status");?></td><td style='width:10px;'><a href='javascript:setOrder("S.shortName","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;'><a href='javascript:setOrder("S.shortName","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
+			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("Edit ");?></td></tr></table></th>
 			</tr>
 
 			<?php
@@ -140,6 +142,13 @@
 
 				echo "<td $classAdd>" . $resource['acquisitionType'] . "</td>";
 				echo "<td $classAdd>" . $resource['status'] . "</td>";
+
+				// @annelhote : add modal link to directly update a product
+				if ($user->canEdit()) {
+					echo "<td><a href='ajax_forms.php?action=getUpdateProductForm&height=498&width=730&resourceID=" . $resource['resourceID'] . "&modal=true' class='thickbox'><img src='images/edit.gif' alt='" . _("edit") . "' title='" . _("edit resource") . "'></a></td>";
+				} else {
+					echo "<td></td>";
+				}
 				echo "</tr>";
 			}
 
