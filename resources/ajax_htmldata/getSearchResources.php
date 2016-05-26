@@ -8,6 +8,9 @@
 	$orderBy = $queryDetails["order"];
 	$recordsPerPage = $queryDetails["perPage"];
 
+	// @annelhote : set up the max level to the sky
+	$recordsPerPage = 99999999;
+
 	//numbers to be displayed in records per page dropdown
 		$recordsPerPageDD = array(10,25,50,100);
 
@@ -49,8 +52,9 @@
 				$displayEndingRecNumber = $totalRecords;
 			}
 
+			// @annelhote : Don't display the record count anymore, tends to be useless
 			//div for displaying record count
-			echo "<span style='float:left; font-weight:bold; width:650px;'>"._("Displaying ") . $displayStartingRecNumber . _(" to ") . $displayEndingRecNumber . _(" of ") . $totalRecords . _(" Resource Records")."</span><span style='float:right;width:20px;'><a href='javascript:void(0);'><img src='images/xls.gif' id='export'></a></span>";
+			// echo "<span style='float:left; font-weight:bold; width:650px;'>"._("Displaying ") . $displayStartingRecNumber . _(" to ") . $displayEndingRecNumber . _(" of ") . $totalRecords . _(" Resource Records")."</span><span style='float:right;width:20px;'><a href='javascript:void(0);'><img src='images/xls.gif' id='export'></a></span>";
 
 
 			//print out page selectors as long as there are more records than the number that should be displayed
@@ -206,20 +210,23 @@
 			}
 			?>
 			</td>
-			<td style="text-align:right">
-			<select id='numberRecordsPerPage' name='numberRecordsPerPage' style='width:50px;'>
-				<?php
-				foreach ($recordsPerPageDD as $i){
-					if ($i == $recordsPerPage){
-						echo "<option value='" . $i . "' selected>" . $i . "</option>";
-					}else{
-						echo "<option value='" . $i . "'>" . $i . "</option>";
-					}
-				}
-				?>
-			</select>
-			<span class='smallText'><?php echo _("records per page");?></span>
-			</td>
+			<!-- @annelhote : Remove the pagination tool -->
+			<!--
+				<td style="text-align:right">
+				<select id='numberRecordsPerPage' name='numberRecordsPerPage' style='width:50px;'>
+					<?php
+					// foreach ($recordsPerPageDD as $i){
+					// 	if ($i == $recordsPerPage){
+					// 		echo "<option value='" . $i . "' selected>" . $i . "</option>";
+					// 	}else{
+					// 		echo "<option value='" . $i . "'>" . $i . "</option>";
+					// 	}
+					// }
+					?>
+				</select>
+				<span class='smallText'><?php echo _("records per page");?></span>
+				</td>
+			-->
 			</tr>
 			</table>
 
