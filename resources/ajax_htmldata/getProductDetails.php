@@ -5,6 +5,8 @@
 			$resourceType = new ResourceType(new NamedArguments(array('primaryKey' => $resource->resourceTypeID)));
 			// @annelhote : Display resource's language
 			$resourceLanguage = new ResourceLanguage(new NamedArguments(array('primaryKey' => $resource->resourceLanguageID)));
+			// @annelhote : Display resource's status
+			$resourceStatus = new ResourceStatus(new NamedArguments(array('primaryKey' => $resource->resourceStatusID)));
 			$acquisitionType = new AcquisitionType(new NamedArguments(array('primaryKey' => $resource->acquisitionTypeID)));
 			$status = new Status(new NamedArguments(array('primaryKey' => $resource->statusID)));
 
@@ -276,7 +278,19 @@
 				<td style='vertical-align:top;width:115px;'><?php echo _("Language:");?></td>
 				<td style='width:345px;'><?php echo $lang_name->getNameLang($resourceLanguage->shortName); ?></td>
 				</tr>
-			<?php } ?>
+			<?php
+			}
+
+			// @annelhote : Display resource's status
+			if ($resource->resourceStatusID){ ?>
+				<tr>
+				<td style='vertical-align:top;width:115px;'><?php echo _("Status:");?></td>
+				<td style='width:345px;'><?php echo _($resourceStatus->shortName); ?></td>
+				</tr>
+			<?php
+			}
+
+			?>
 
 
 		</table>

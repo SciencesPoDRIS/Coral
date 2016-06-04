@@ -25,6 +25,11 @@
 		$resourceLanguageObj = new ResourceLanguage();
 		$resourceLanguageArray = $resourceLanguageObj->sortedArray();
 
+		// @annelhote : get all status for output in drop down
+		$resourceStatusArray = array();
+		$resourceStatusObj = new ResourceStatus();
+		$resourceStatusArray = $resourceStatusObj->sortedArray();
+
     //get parents resources
     $sanitizedInstance = array();
     $instance = new Resource();
@@ -124,6 +129,25 @@
 							echo "<option value='" . $resourceLanguage['resourceLanguageID'] . "' selected>" . $lang_name->getNameLang($resourceLanguage['shortName']) . "</option>\n";
 						}else{
 							echo "<option value='" . $resourceLanguage['resourceLanguageID'] . "'>" . $lang_name->getNameLang($resourceLanguage['shortName']) . "</option>\n";
+						}
+					}
+					?>
+					</select>
+					</td>
+					</tr>
+
+					<!-- @annelhote : Add resource's status -->
+					<tr>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='resourceStatusID'><?php echo _("Status:");?></label></td>
+					<td>
+					<select name='resourceStatusID' id='resourceStatusID' style='width:100px;' class='changeSelect'>
+					<option value=''></option>
+					<?php
+					foreach ($resourceStatusArray as $resourceStatus){
+						if (!(trim(strval($resourceStatus['resourceStatusID'])) != trim(strval($resource->resourceStatusID)))){
+							echo "<option value='" . $resourceStatus['resourceStatusID'] . "' selected>" . _($resourceStatus['shortName']) . "</option>\n";
+						}else{
+							echo "<option value='" . $resourceStatus['resourceStatusID'] . "'>" . _($resourceStatus['shortName']) . "</option>\n";
 						}
 					}
 					?>

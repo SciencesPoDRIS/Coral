@@ -15,6 +15,8 @@
 		$resource->resourceAltURL 		= $_POST['resourceAltURL'];
 		// @annelhote : Update resource's language
 		$resource->resourceLanguageID 	= $_POST['resourceLanguageID'];
+		// @annelhote : Update resource's status
+		$resource->resourceStatusID 	= $_POST['resourceStatusID'];
 
     $isbnarray = json_decode($_POST['isbnOrISSN']);
     $resource->setIsbnOrIssn($isbnarray);
