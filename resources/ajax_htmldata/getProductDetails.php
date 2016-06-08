@@ -3,8 +3,6 @@
 			$resource = new Resource(new NamedArguments(array('primaryKey' => $resourceID)));
 			$resourceFormat = new ResourceFormat(new NamedArguments(array('primaryKey' => $resource->resourceFormatID)));
 			$resourceType = new ResourceType(new NamedArguments(array('primaryKey' => $resource->resourceTypeID)));
-			// @annelhote : Display resource's language
-			$resourceLanguage = new ResourceLanguage(new NamedArguments(array('primaryKey' => $resource->resourceLanguageID)));
 			// @annelhote : Display resource's status
 			$resourceStatus = new ResourceStatus(new NamedArguments(array('primaryKey' => $resource->resourceStatusID)));
 			$acquisitionType = new AcquisitionType(new NamedArguments(array('primaryKey' => $resource->acquisitionTypeID)));
@@ -59,6 +57,13 @@
 			//get organizations (already returned in an array)
 			$orgArray = $resource->getOrganizationArray();
 
+			// @annelhote : get all languages
+			$languageObj = new Language();
+			$languages = $languageObj->getAll();
+
+			// @annelhote : get all languages from this resource
+			$resourceLanguageObj = new ResourceLanguage();
+			$resourceLanguageArray = $resourceLanguageObj->getResourceLanguages($resourceID);
 
 		?>
 		<table class='linedFormTable' style='width:460px;'>
@@ -273,10 +278,20 @@
 			}
 
 			// @annelhote : Display resource's language
-			if ($resource->resourceLanguageID){ ?>
+			if (count($resourceLanguageArray) > 0){ ?>
 				<tr>
-				<td style='vertical-align:top;width:115px;'><?php echo _("Language:");?></td>
-				<td style='width:345px;'><?php echo $lang_name->getNameLang($resourceLanguage->shortName); ?></td>
+				<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='resourceLanguageID'><?php echo _("Language:");?></label></td>
+				<td>
+				<?php
+				foreach ($languages as $language) {
+					if(in_array($language['shortName'], $resourceLanguageArray)) {
+						echo "<input type='checkbox' name='languages' value='" . $language['languageId'] . "' checked disabled /> " . $lang_name->getNameLang($language['shortName']) . "<br/>";
+					} else {
+						echo "<input type='checkbox' name='languages' value='" . $language['languageId'] . "' disabled /> " . $lang_name->getNameLang($language['shortName']) . "<br/>";
+					}
+				}
+				?>
+				</td>
 				</tr>
 			<?php
 			}
