@@ -13,8 +13,6 @@
 		$resource->resourceTypeID 		= $_POST['resourceTypeID'];
 		$resource->resourceURL 			= $_POST['resourceURL'];
 		$resource->resourceAltURL 		= $_POST['resourceAltURL'];
-		// @annelhote : Update resource's language
-		$resource->resourceLanguageID 	= $_POST['resourceLanguageID'];
 		// @annelhote : Update resource's status
 		$resource->resourceStatusID 	= $_POST['resourceStatusID'];
 
@@ -65,6 +63,22 @@
         }
       }
     }
+
+		// @annelhote : Update resource's language
+		$resource->removeResourceLanguages();
+		if ($_POST['resourceLanguages']) {
+			$resourceLanguagesArray = json_decode($_POST['resourceLanguages']);
+			foreach($resourceLanguagesArray as $languageId) {
+				$resourceLanguage = new ResourceLanguage();
+				$resourceLanguage->resourceId = $resourceID;
+				$resourceLanguage->languageId = $languageId;
+				try {
+					$resourceLanguage->save();
+				} catch (Exception $e) {
+					echo $e->getMessage();
+				}
+			}
+		}
 
 		//next, delete and then re-insert the aliases
 		$alias = new Alias();

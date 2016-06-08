@@ -305,6 +305,22 @@ msgstr "Français"
 msgid "English"
 msgstr "Anglais"
 
+#: LangCodes.php:19
+msgid "Spanish"
+msgstr "Espagnol"
+
+#: LangCodes.php:20
+msgid "Portuguese"
+msgstr "Portugais"
+
+#: LangCodes.php:21
+msgid "German"
+msgstr "Allemand"
+
+#: LangCodes.php:22
+msgid "Multilingual"
+msgstr "Multilingue"
+
 #: resource.php:54
 msgid "Success!"
 msgstr "Fait!"
@@ -2340,7 +2356,7 @@ msgstr "Langue:"
 
 #: ajax_forms/getUpdateProductForm.php:148 @annelhote
 #: ajax_htmldata/getProductDetails.php:288 @annelhote
-msgid "test"
+msgid "trial"
 msgstr "En test"
 msgid "new"
 msgstr "Nouveauté"

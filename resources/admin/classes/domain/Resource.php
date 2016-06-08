@@ -2455,6 +2455,12 @@ class Resource extends DatabaseObject {
     }
   }
 
+	// @annelhote : Remove all languages from a resource
+	public function removeResourceLanguages() {
+		$query = "DELETE FROM ResourceLanguage WHERE resourceId = '" . $this->resourceID . "'";
+		$result = $this->db->processQuery($query);
+	}
+
 }
 
 ?>

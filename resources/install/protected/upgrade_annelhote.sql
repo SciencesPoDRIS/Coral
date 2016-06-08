@@ -1,32 +1,34 @@
 -- @annelhote : Add a table to resource's languages
 
-ALTER TABLE `Resource` ADD COLUMN `resourceLanguageID` int(11) default NULL AFTER `resourceAltURL`;
 
+DROP TABLE IF EXISTS `Language`;
+CREATE TABLE  `Language` (
+  `languageId` int(11) NOT NULL auto_increment,
+  `shortName` varchar(200) default NULL,
+  PRIMARY KEY  USING BTREE (`languageId`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+ALTER TABLE `Language` ADD INDEX `shortName` ( `shortName` );
+
+
+-- ISO 639-1 : https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+INSERT INTO `Language` (languageId, shortName) values (1, 'en');
+INSERT INTO `Language` (languageId, shortName) values (2, 'fr');
 
 
 DROP TABLE IF EXISTS `ResourceLanguage`;
 CREATE TABLE  `ResourceLanguage` (
-  `resourceLanguageID` int(11) NOT NULL auto_increment,
-  `shortName` varchar(200) default NULL,
-  PRIMARY KEY  USING BTREE (`resourceLanguageID`)
+  `resourceLanguageId` int(11) NOT NULL auto_increment,
+  `resourceId` int(11) NOT NULL,
+  `languageId` int(11) NOT NULL,
+  PRIMARY KEY  USING BTREE (`resourceLanguageId`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-
-
-
-ALTER TABLE `ResourceLanguage` ADD INDEX `shortName` ( `shortName` );
-
-
-
--- ISO 639-1 : https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
-INSERT INTO `ResourceLanguage` (resourceLanguageID, shortName) values (1, 'en');
-INSERT INTO `ResourceLanguage` (resourceLanguageID, shortName) values (2, 'fr');
-INSERT INTO `ResourceLanguage` (resourceLanguageID, shortName) values (3, 'sp');
 
 
 -- @annelhote : Add a table to resource's status
 
 ALTER TABLE `Resource` ADD COLUMN `resourceStatusID` int(11) default NULL AFTER `resourceLanguageID`;
-
 
 
 DROP TABLE IF EXISTS `ResourceStatus`;
@@ -37,9 +39,7 @@ CREATE TABLE  `ResourceStatus` (
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
-
 ALTER TABLE `ResourceStatus` ADD INDEX `shortName` ( `shortName` );
-
 
 
 INSERT INTO `ResourceStatus` (resourceStatusID, shortName) values (1, 'test');

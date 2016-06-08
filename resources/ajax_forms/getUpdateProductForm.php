@@ -9,7 +9,6 @@
 			$archiveChecked = '';
 		}
 
-
 		//get all resource formats for output in drop down
 		$resourceFormatArray = array();
 		$resourceFormatObj = new ResourceFormat();
@@ -19,11 +18,6 @@
 		$resourceTypeArray = array();
 		$resourceTypeObj = new ResourceType();
 		$resourceTypeArray = $resourceTypeObj->allAsArray();
-
-		// @annelhote : get all languages for output in drop down
-		$resourceLanguageArray = array();
-		$resourceLanguageObj = new ResourceLanguage();
-		$resourceLanguageArray = $resourceLanguageObj->sortedArray();
 
 		// @annelhote : get all status for output in drop down
 		$resourceStatusArray = array();
@@ -42,11 +36,18 @@
       array_push($parentResourceArray, $sanitizedInstance);
     }
 
+		// @annelhote : get all languages
+		$languageObj = new Language();
+		$languages = $languageObj->getAll();
+
+		// @annelhote : get all languages from this resource
+		$resourceLanguageObj = new ResourceLanguage();
+		$resourceLanguageArray = $resourceLanguageObj->getResourceLanguages($resourceID);
+
 		//get all alias types for output in drop down
 		$aliasTypeArray = array();
 		$aliasTypeObj = new AliasType();
 		$aliasTypeArray = $aliasTypeObj->allAsArray();
-
 
 		//get aliases
 		$sanitizedInstance = array();
@@ -117,22 +118,19 @@
 					<td><input type='text' id='resourceAltURL' name='resourceAltURL' value = '<?php echo $resource->resourceAltURL; ?>' style='width:260px;' class='changeInput'  /></td>
 					</tr>
 
-					<!-- @annelhote : Add resource's language -->
+					<!-- @annelhote : Add resource's languages -->
 					<tr>
 					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='resourceLanguageID'><?php echo _("Language:");?></label></td>
 					<td>
-					<select name='resourceLanguageID' id='resourceLanguageID' style='width:100px;' class='changeSelect'>
-					<option value=''></option>
 					<?php
-					foreach ($resourceLanguageArray as $resourceLanguage){
-						if (!(trim(strval($resourceLanguage['resourceLanguageID'])) != trim(strval($resource->resourceLanguageID)))){
-							echo "<option value='" . $resourceLanguage['resourceLanguageID'] . "' selected>" . $lang_name->getNameLang($resourceLanguage['shortName']) . "</option>\n";
-						}else{
-							echo "<option value='" . $resourceLanguage['resourceLanguageID'] . "'>" . $lang_name->getNameLang($resourceLanguage['shortName']) . "</option>\n";
+					foreach ($languages as $language) {
+						if(in_array($language['shortName'], $resourceLanguageArray)) {
+							echo "<input type='checkbox' name='languages' value='" . $language['languageId'] . "' checked /> " . $lang_name->getNameLang($language['shortName']) . "<br/>";
+						} else {
+							echo "<input type='checkbox' name='languages' value='" . $language['languageId'] . "' /> " . $lang_name->getNameLang($language['shortName']) . "<br/>";
 						}
 					}
 					?>
-					</select>
 					</td>
 					</tr>
 

@@ -19,18 +19,12 @@
 **************************************************************************************************************************
 */
 
-class ResourceLanguage extends DatabaseObject {
+class Language extends DatabaseObject {
 
-	public function getResourceLanguages($resourceId) {
-		$query = "SELECT L.shortName FROM ResourceLanguage AS RL, Language AS L WHERE L.languageId = RL.languageId AND RL.resourceID = '" . $resourceId . "'";
-		$rows = $this->db->processQuery($query, 'assoc');
-
-		$results = array();
-		foreach ($rows as $row) {
-			array_push($results, $row['shortName']);
-		}
-
-		return $results;
+	public function getAll() {
+		$query = "SELECT * FROM Language ORDER BY languageId ASC";
+		$result = $this->db->processQuery($query, 'assoc');
+		return $result;
 	}
 
 }
