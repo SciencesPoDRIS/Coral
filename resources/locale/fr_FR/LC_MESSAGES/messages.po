@@ -2365,3 +2365,7 @@ msgstr "Nouveauté"
 #: ajax_forms/getUpdateProductForm.php:268 @annelhote
 msgid "Accessibility:"
 msgstr "Accessibilité:"
+
+#: ajax_forms/getUpdateProductForm.php:283 @annelhote
+msgid "Published:"
+msgstr "Publié:"

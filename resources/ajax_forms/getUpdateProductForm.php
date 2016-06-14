@@ -278,6 +278,20 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 					</td>
 					</tr>
 
+					<!-- @annelhote : Add resource's publication status -->
+					<tr>
+					<td style='text-align:left'><label for='published'><b><?php echo _("Published:");?></b></label></td>
+					<td>
+					<?php
+					if($resource->published) {
+						echo "<input type='checkbox' id='published' name='published' checked />";
+					} else {
+						echo "<input type='checkbox' id='published' name='published' />";
+					}
+					?>
+					</td>
+					</tr>
+
 					</table>
 				</td>
 				</tr>

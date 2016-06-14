@@ -471,16 +471,24 @@ function submitProductForm(){
             accessibility = 1;
         }
 
+        // @annelhote : Set resource's publication status
+        var published = 0;
+        if($('#published').attr('checked')) {
+            published = 1;
+        }
+
         // @annelhote : Add resource's status
         // @annelhote : Add resource's languages
         // @annelhote : Add resource's logo
         // @annelhote : Add resource's accessibility
+        // @annelhote : Add resource's publication status
         $('#submitProductChanges').attr("disabled", "disabled");
         $.ajax({
             type:       "POST",
             url:        "ajax_processing.php?action=submitProductUpdate",
             cache:      false,
-            data:       { resourceID: $("#editResourceID").val(), titleText: $("#titleText").val(), parentResourcesID: JSON.stringify(arrayparents), descriptionText: $("#descriptionText").val(), resourceURL: $("#resourceURL").val(), resourceAltURL: $("#resourceAltURL").val(), resourceFormatID: $("#resourceFormatID").val(), resourceTypeID: $("#resourceTypeID").val(), archiveInd: getCheckboxValue('archiveInd'), aliasTypes: aliasTypeList, aliasNames: aliasNameList, organizationRoles: organizationRoleList, organizations: organizationList, isbnOrISSN: JSON.stringify(arrayisbn), resourceLanguages: JSON.stringify(resourceLanguages), resourceStatusID: $("#resourceStatusID").val(), resourceLogo: resourceLogo, accessibility: accessibility },
+            // data:       { resourceID: $("#editResourceID").val(), titleText: $("#titleText").val(), parentResourcesID: JSON.stringify(arrayparents), descriptionText: $("#descriptionText").val(), resourceURL: $("#resourceURL").val(), resourceAltURL: $("#resourceAltURL").val(), resourceFormatID: $("#resourceFormatID").val(), resourceTypeID: $("#resourceTypeID").val(), archiveInd: getCheckboxValue('archiveInd'), aliasTypes: aliasTypeList, aliasNames: aliasNameList, organizationRoles: organizationRoleList, organizations: organizationList, isbnOrISSN: JSON.stringify(arrayisbn), resourceLanguages: JSON.stringify(resourceLanguages), resourceStatusID: $("#resourceStatusID").val(), resourceLogo: resourceLogo, accessibility: accessibility, published: published },
+            data:       { resourceID: $("#editResourceID").val(), titleText: $("#titleText").val(), parentResourcesID: JSON.stringify(arrayparents), descriptionText: $("#descriptionText").val(), resourceURL: $("#resourceURL").val(), resourceAltURL: $("#resourceAltURL").val(), resourceFormatID: $("#resourceFormatID").val(), resourceTypeID: $("#resourceTypeID").val(), archiveInd: getCheckboxValue('archiveInd'), aliasTypes: aliasTypeList, aliasNames: aliasNameList, organizationRoles: organizationRoleList, organizations: organizationList, isbnOrISSN: JSON.stringify(arrayisbn), resourceLanguages: JSON.stringify(resourceLanguages), resourceStatusID: $("#resourceStatusID").val(), accessibility: accessibility, published: published },
             success:    function(html) {
                 if (html){
                     $("#span_errors").html(html);

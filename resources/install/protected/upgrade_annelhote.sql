@@ -53,3 +53,6 @@ ALTER TABLE `Resource` ADD COLUMN `logo` varchar(45) default NULL AFTER `resourc
 
 
 ALTER TABLE `Resource` ADD COLUMN `accessibility` int(11) default 0 AFTER `logo`;
+
+
+ALTER TABLE `Resource` ADD COLUMN `published` int(11) default 0 AFTER `accessibility`;

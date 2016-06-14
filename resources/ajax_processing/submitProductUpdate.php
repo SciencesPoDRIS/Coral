@@ -18,7 +18,9 @@
 		// @annelhote : Update resource's accessibility
 		$resource->accessibility		= $_POST['accessibility'];
 		// @annelhote : Update resource's logo
-		$resource->logo					= $_POST['resourceLogo'];
+		// $resource->logo					= $_POST['resourceLogo'];
+		// @annelhote : Update resource's publication status
+		$resource->published			= $_POST['published'];
 
     $isbnarray = json_decode($_POST['isbnOrISSN']);
     $resource->setIsbnOrIssn($isbnarray);
