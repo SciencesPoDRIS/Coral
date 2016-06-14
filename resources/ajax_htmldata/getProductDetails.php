@@ -328,6 +328,34 @@
 			?>
 			</tr>
 
+			<?php
+			// @annelhote : Display resource's publication status
+			?>
+			<tr>
+			<td style='vertical-align:top;width:115px;'><?php echo _("Published") . ":"; ?></td>
+			<?php
+			if($resource->published == 0) {
+			?>
+				<td style='width:345px;'><?php echo _("No"); ?></td>
+			<?php
+			} else {
+			?>
+				<td style='width:345px;'><?php echo _("Yes"); ?></td>
+			<?php
+			}
+			?>
+			</tr>
+
+			<?php
+			// @annelhote : Display resource's publication comment
+			if ($resource->publicationComment){ ?>
+				<tr>
+				<td style='vertical-align:top;width:115px;'><?php echo _("Publication Comment:");?></td>
+				<td style='width:345px;'><?php echo nl2br($resource->publicationComment); ?></td>
+				</tr>
+			<?php
+			}
+			?>
 
 		</table>
 		<?php if ($user->canEdit()){ ?>
