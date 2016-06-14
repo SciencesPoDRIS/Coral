@@ -81,6 +81,12 @@
 			</tr>
 
 			<tr>
+				<td>
+					<img src="logo/<?php echo $resource->logo ?>" alt="logo" height="200" width="200" />
+				</td>
+			</tr>
+
+			<tr>
 			<td style='vertical-align:top;width:115px;'><?php echo _("Record ID:");?></td>
 			<td style='width:345px;'><?php echo $resource->resourceID; ?></td>
 			</tr>
@@ -299,13 +305,28 @@
 			// @annelhote : Display resource's status
 			if ($resource->resourceStatusID){ ?>
 				<tr>
-				<td style='vertical-align:top;width:115px;'><?php echo _("Status:");?></td>
+				<td style='vertical-align:top;width:115px;'><?php echo _("Status:"); ?></td>
 				<td style='width:345px;'><?php echo _($resourceStatus->shortName); ?></td>
 				</tr>
 			<?php
 			}
 
+			// @annelhote : Display resource's accessibility
 			?>
+			<tr>
+			<td style='vertical-align:top;width:115px;'><?php echo _("Accessibility:"); ?></td>
+			<?php
+			if($resource->accessibility == 0) {
+			?>
+				<td style='width:345px;'><?php echo _("No"); ?></td>
+			<?php
+			} else {
+			?>
+				<td style='width:345px;'><?php echo _("Yes"); ?></td>
+			<?php
+			}
+			?>
+			</tr>
 
 
 		</table>

@@ -2,3 +2,8 @@
 # Mac files
 # 
 .DS_Store
+
+#
+# Resources logos folder
+# 
+resources/logo

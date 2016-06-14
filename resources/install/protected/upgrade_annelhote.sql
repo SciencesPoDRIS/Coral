@@ -28,7 +28,7 @@ CREATE TABLE  `ResourceLanguage` (
 
 -- @annelhote : Add a table to resource's status
 
-ALTER TABLE `Resource` ADD COLUMN `resourceStatusID` int(11) default NULL AFTER `resourceLanguageID`;
+ALTER TABLE `Resource` ADD COLUMN `resourceStatusID` int(11) default NULL AFTER `resourceAltURL`;
 
 
 DROP TABLE IF EXISTS `ResourceStatus`;
@@ -44,3 +44,12 @@ ALTER TABLE `ResourceStatus` ADD INDEX `shortName` ( `shortName` );
 
 INSERT INTO `ResourceStatus` (resourceStatusID, shortName) values (1, 'test');
 INSERT INTO `ResourceStatus` (resourceStatusID, shortName) values (2, 'new');
+
+
+-- @annelhote : Add a field to resource's logo
+
+
+ALTER TABLE `Resource` ADD COLUMN `logo` varchar(45) default NULL AFTER `resourceStatusID`;
+
+
+ALTER TABLE `Resource` ADD COLUMN `accessibility` int(11) default 0 AFTER `logo`;

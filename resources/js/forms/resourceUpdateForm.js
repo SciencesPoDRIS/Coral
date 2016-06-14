@@ -52,15 +52,29 @@ $(function(){
         if(e.keyCode == 13) {
             submitProductForm();
         }
-    }); 	
+    });
 
     $('#resourceTypeID').keyup(function(e) {
         if(e.keyCode == 13) {
             submitProductForm();
         }
-    }); 
+    });
 
-
+    // @annelhote : Upload ressource Logo
+    new AjaxUpload('resourceLogo',
+        {action: 'ajax_processing.php?action=uploadLogo',
+            name: 'resourceLogo',
+            onComplete : function(data, response) {
+                var errorMessage = $(response).filter('#error');
+                if (errorMessage.size() > 0) {
+                    console.log('error during file upload');
+                    resourceLogo = '';
+                } else {
+                    resourceLogo = $(response).filter('#fileName').text();
+                }
+            }
+        }
+    );
 
     $("input[name='parentResourceName']").autocomplete('ajax_processing.php?action=getResourceList', {
         minChars: 2,
@@ -75,9 +89,7 @@ $(function(){
         formatResult: function(row) {
             return row[0].replace(/(<.+?>)/gi, '');
         }
-
     });
-
 
     //once something has been selected, change the hidden input value
     $("input[name='parentResourceName']").result(function(event, data, formatted) {
@@ -90,8 +102,6 @@ $(function(){
             $(this).next().next().html("<br />"+_("Error - Parent cannot be the same as the child"));
         }
     });
-
-
 
     $(".organizationName").autocomplete('ajax_processing.php?action=getOrganizationList', {
         minChars: 2,
@@ -174,11 +184,8 @@ $(function(){
     $('.changeAutocomplete').live('blur', function() {
         if(this.value == ''){
             this.value = this.defaultValue;
-        }	
+        }
     });
-
-
-
 
     $('textarea').addClass("idleField");
     $('textarea').focus(function() {
@@ -411,11 +418,6 @@ function validateForm (){
     }
 }
 
-
-
-
-
-
 function submitProductForm(){
 
     aliasTypeList ='';
@@ -463,14 +465,22 @@ function submitProductForm(){
             resourceLanguages.push($(this).val());
         });
 
-        // @annelhote : Add resource's status and resource's languages
-        $('#submitProductChanges').attr("disabled", "disabled"); 
+        // @annelhote : Set resource's accessibility
+        var accessibility = 0;
+        if($('#accessibility').attr('checked')) {
+            accessibility = 1;
+        }
+
+        // @annelhote : Add resource's status
+        // @annelhote : Add resource's languages
+        // @annelhote : Add resource's logo
+        // @annelhote : Add resource's accessibility
+        $('#submitProductChanges').attr("disabled", "disabled");
         $.ajax({
             type:       "POST",
             url:        "ajax_processing.php?action=submitProductUpdate",
             cache:      false,
-            data:       { resourceID: $("#editResourceID").val(), titleText: $("#titleText").val(), parentResourcesID: JSON.stringify(arrayparents), descriptionText: $("#descriptionText").val(), resourceURL: $("#resourceURL").val(), resourceAltURL: $("#resourceAltURL").val(), resourceFormatID: $("#resourceFormatID").val(), resourceTypeID: $("#resourceTypeID").val(), archiveInd: getCheckboxValue('archiveInd'), aliasTypes: aliasTypeList, aliasNames: aliasNameList, organizationRoles: organizationRoleList, organizations: organizationList, isbnOrISSN: JSON.stringify(arrayisbn), resourceLanguages: JSON.stringify(resourceLanguages), resourceStatusID: $("#resourceStatusID").val() },
-
+            data:       { resourceID: $("#editResourceID").val(), titleText: $("#titleText").val(), parentResourcesID: JSON.stringify(arrayparents), descriptionText: $("#descriptionText").val(), resourceURL: $("#resourceURL").val(), resourceAltURL: $("#resourceAltURL").val(), resourceFormatID: $("#resourceFormatID").val(), resourceTypeID: $("#resourceTypeID").val(), archiveInd: getCheckboxValue('archiveInd'), aliasTypes: aliasTypeList, aliasNames: aliasNameList, organizationRoles: organizationRoleList, organizations: organizationList, isbnOrISSN: JSON.stringify(arrayisbn), resourceLanguages: JSON.stringify(resourceLanguages), resourceStatusID: $("#resourceStatusID").val(), resourceLogo: resourceLogo, accessibility: accessibility },
             success:    function(html) {
                 if (html){
                     $("#span_errors").html(html);
@@ -480,24 +490,16 @@ function submitProductForm(){
                     window.parent.tb_remove();
                     window.parent.updateProduct();
                     window.parent.updateRightPanel();
-                    window.parent.updateTitle();			
+                    window.parent.updateTitle();
                     return false;
-                }					
-
+                }
             }
-
-
         });
-
     }
-
-
 }
 
-
 //kill all binds done by jquery live
-function kill(){
-
+function kill() {
     $('.addAlias').die('click'); 
     $('.addOrganization').die('click');
     $('.changeDefault').die('blur');
@@ -510,5 +512,4 @@ function kill(){
     $('.select').die('focus');
     $('.organizationName').die('focus');
     $('.remove').die('click');
-
 }

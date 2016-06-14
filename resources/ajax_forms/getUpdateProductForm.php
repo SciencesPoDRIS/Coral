@@ -72,7 +72,6 @@
 		$organizationRoleObj = new OrganizationRole();
 		$organizationRoleArray = $organizationRoleObj->getArray();
 
-
 		//get organizations (already returned in an array)
 		$orgArray = $resource->getOrganizationArray();
 ?>
@@ -95,6 +94,14 @@
 			<tr>
 			<td>
 				<table class='noBorder' style='width:670px; margin:15px 20px 10px 20px;'>
+
+				<!-- @annelhote : Display resource logo -->
+				<tr>
+					<td>
+						<input type="file" name="resourceLogo" id="resourceLogo" accept=".jpg" />
+					</td>
+				</tr>
+
 				<tr>
 				<td style='width:360px;'>
 					<table>
@@ -254,6 +261,20 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 					<td style='text-align:left'><label for='archiveInd'><b><?php echo _("Archived:");?></b></label></td>
 					<td>
 					<input type='checkbox' id='archiveInd' name='archiveInd' <?php echo $archiveChecked; ?> />
+					</td>
+					</tr>
+
+					<!-- @annelhote : Add resource's accessibility -->
+					<tr>
+					<td style='text-align:left'><label for='accessibility'><b><?php echo _("Accessibility:");?></b></label></td>
+					<td>
+					<?php
+					if($resource->accessibility) {
+						echo "<input type='checkbox' id='accessibility' name='accessibility' checked />";
+					} else {
+						echo "<input type='checkbox' id='accessibility' name='accessibility' />";
+					}
+					?>
 					</td>
 					</tr>
 

@@ -15,6 +15,10 @@
 		$resource->resourceAltURL 		= $_POST['resourceAltURL'];
 		// @annelhote : Update resource's status
 		$resource->resourceStatusID 	= $_POST['resourceStatusID'];
+		// @annelhote : Update resource's accessibility
+		$resource->accessibility		= $_POST['accessibility'];
+		// @annelhote : Update resource's logo
+		$resource->logo					= $_POST['resourceLogo'];
 
     $isbnarray = json_decode($_POST['isbnOrISSN']);
     $resource->setIsbnOrIssn($isbnarray);
@@ -22,11 +26,11 @@
 		//to determine status id
 		$status = new Status();
 
-		if (((!$resource->archiveDate) || ($resource->archiveDate == '0000-00-00')) && ($_POST['archiveInd'] == "1")){
+		if (((!$resource->archiveDate) || ($resource->archiveDate == '0000-00-00')) && ($_POST['archiveInd'] == "1")) {
 			$resource->archiveDate = date( 'Y-m-d' );
 			$resource->archiveLoginID = $loginID;
 			$resource->statusID = $status->getIDFromName('archive');
-		}else if ($_POST['archiveInd'] == "0"){
+		} else if ($_POST['archiveInd'] == "0") {
 			//if archive date is currently set and being removed, mark status as complete
 			if (($resource->archiveDate != '') && ($resource->archiveDate != '0000-00-00')){
 				$resource->statusID = $status->getIDFromName('complete');
@@ -34,12 +38,8 @@
 			$resource->archiveDate = '';
 			$resource->archiveLoginID = '';
 		}
-
-
-
 		try {
 			$resource->save();
-
 		} catch (Exception $e) {
 			echo $e->getMessage();
 		}
