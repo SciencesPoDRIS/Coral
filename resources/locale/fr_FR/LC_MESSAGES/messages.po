@@ -2370,3 +2370,7 @@ msgstr "Accessibilité:"
 #: ajax_forms/getUpdateProductForm.php:283 @annelhote
 msgid "Published"
 msgstr "Publié"
+
+#: ajax_forms/getUpdateProductForm.php:179 @annelhote
+msgid "Publication Comment"
+msgstr "Commentaire de publication"

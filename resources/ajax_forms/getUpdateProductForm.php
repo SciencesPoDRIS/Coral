@@ -160,6 +160,26 @@
 					</td>
 					</tr>
 
+					<!-- @annelhote : Add resource's publication status -->
+					<tr>
+					<td style='text-align:left'><label for='published'><b><?php echo _("Published") . ":" ; ?></b></label></td>
+					<td>
+					<?php
+					if($resource->published) {
+						echo "<input type='checkbox' id='published' name='published' checked />";
+					} else {
+						echo "<input type='checkbox' id='published' name='published' />";
+					}
+					?>
+					</td>
+					</tr>
+
+					<!-- @annelhote : Add resource's publication comment -->
+					<tr>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='publicationComment'><?php echo _("Publication Comment") . ":" ;?></label></td>
+					<td><textarea rows='4' id='publicationComment' name='publicationComment' style='width:260px' class='changeInput' ><?php echo $resource->publicationComment; ?></textarea></td>
+					</tr>
+
 					</table>
 
 				</td>
@@ -273,20 +293,6 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 						echo "<input type='checkbox' id='accessibility' name='accessibility' checked />";
 					} else {
 						echo "<input type='checkbox' id='accessibility' name='accessibility' />";
-					}
-					?>
-					</td>
-					</tr>
-
-					<!-- @annelhote : Add resource's publication status -->
-					<tr>
-					<td style='text-align:left'><label for='published'><b><?php echo _("Published") . ":" ; ?></b></label></td>
-					<td>
-					<?php
-					if($resource->published) {
-						echo "<input type='checkbox' id='published' name='published' checked />";
-					} else {
-						echo "<input type='checkbox' id='published' name='published' />";
 					}
 					?>
 					</td>

@@ -21,6 +21,8 @@
 		// $resource->logo					= $_POST['resourceLogo'];
 		// @annelhote : Update resource's publication status
 		$resource->published			= $_POST['published'];
+		// @annelhote : Update resource's publication status
+		$resource->publicationComment	= $_POST['publicationComment'];
 
     $isbnarray = json_decode($_POST['isbnOrISSN']);
     $resource->setIsbnOrIssn($isbnarray);
