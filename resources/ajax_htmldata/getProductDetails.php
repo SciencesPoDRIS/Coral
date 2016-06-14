@@ -82,7 +82,7 @@
 
 			<tr>
 				<td>
-					<img src="logo/<?php echo $resource->logo ?>" alt="logo" height="200" width="200" />
+					<img src="logo/<?php echo $resource->logo ?>" alt="logo" style="max-width: 200px; max-height: 200px;"/>
 				</td>
 			</tr>
 
