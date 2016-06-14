@@ -280,7 +280,7 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 
 					<!-- @annelhote : Add resource's publication status -->
 					<tr>
-					<td style='text-align:left'><label for='published'><b><?php echo _("Published:");?></b></label></td>
+					<td style='text-align:left'><label for='published'><b><?php echo _("Published") . ":" ; ?></b></label></td>
 					<td>
 					<?php
 					if($resource->published) {
