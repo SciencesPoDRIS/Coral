@@ -98,7 +98,15 @@
 				<!-- @annelhote : Display resource logo -->
 				<tr>
 					<td>
-						<input type="file" name="resourceLogo" id="resourceLogo" accept=".jpg" />
+						<input type="file" name="resourceLogo" id="resourceLogo" accept="image/*" />
+					</td>
+				</tr>
+				<tr>
+					<td class='resourceLogoFileName'>
+						<input type="text" name="resourceLogoFileName" id="resourceLogoFileName" value="<?php echo $resource->logo; ?>" disabled />
+						<a href='#'>
+							<img src='images/cross.gif' alt='<?php echo _("remove ");?>' title='<?php echo _("remove ");?>' class='removeLogo' style="vertical-align: bottom;" />
+						</a>
 					</td>
 				</tr>
 

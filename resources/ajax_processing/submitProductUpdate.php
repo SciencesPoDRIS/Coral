@@ -18,7 +18,7 @@
 		// @annelhote : Update resource's accessibility
 		$resource->accessibility		= $_POST['accessibility'];
 		// @annelhote : Update resource's logo
-		// $resource->logo					= $_POST['resourceLogo'];
+		$resource->logo					= $_POST['resourceLogo'];
 		// @annelhote : Update resource's publication status
 		$resource->published			= $_POST['published'];
 		// @annelhote : Update resource's publication status

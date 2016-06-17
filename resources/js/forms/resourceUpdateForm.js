@@ -60,19 +60,41 @@ $(function(){
         }
     });
 
-    // @annelhote : Upload ressource Logo
+    // @annelhote : Hide resourceLogo input if empty
+    if($('#resourceLogoFileName').val() == '') {
+        $('.resourceLogoFileName').hide();
+    }
+
+    // @annelhote : Upload ressource logo
     new AjaxUpload('resourceLogo',
         {action: 'ajax_processing.php?action=uploadLogo',
             name: 'resourceLogo',
             onComplete : function(data, response) {
                 var errorMessage = $(response).filter('#error');
                 if (errorMessage.size() > 0) {
+                    $('.resourceLogoFileName').hide();
                     console.log('error during file upload');
-                    resourceLogo = '';
                 } else {
-                    resourceLogo = $(response).filter('#fileName').text();
+                    $('.resourceLogoFileName').show();
+                    $('#resourceLogoFileName').val($(response).filter('#fileName').text());
                 }
             }
+        }
+    );
+
+    // @annelhote : Remove resource logo
+    $('.removeLogo').click(
+        function() {
+            $.ajax({
+                type:       "POST",
+                url:        "ajax_processing.php?action=removeResourceLogo",
+                cache:      false,
+                data:       { resourceID: $("#editResourceID").val() },
+                success:    function(html) {
+                    $('.resourceLogoFileName').hide();
+                    $('#resourceLogoFileName').val('');
+                }
+            });
         }
     );
 
@@ -137,7 +159,7 @@ $(function(){
     $('.changeDefault').live('blur', function() {
         if(this.value == ''){
             this.value = this.defaultValue;
-        }		
+        }
     });
 
 
@@ -488,8 +510,7 @@ function submitProductForm(){
             type:       "POST",
             url:        "ajax_processing.php?action=submitProductUpdate",
             cache:      false,
-            // data:       { resourceID: $("#editResourceID").val(), titleText: $("#titleText").val(), parentResourcesID: JSON.stringify(arrayparents), descriptionText: $("#descriptionText").val(), resourceURL: $("#resourceURL").val(), resourceAltURL: $("#resourceAltURL").val(), resourceFormatID: $("#resourceFormatID").val(), resourceTypeID: $("#resourceTypeID").val(), archiveInd: getCheckboxValue('archiveInd'), aliasTypes: aliasTypeList, aliasNames: aliasNameList, organizationRoles: organizationRoleList, organizations: organizationList, isbnOrISSN: JSON.stringify(arrayisbn), resourceLanguages: JSON.stringify(resourceLanguages), resourceStatusID: $("#resourceStatusID").val(), resourceLogo: resourceLogo, accessibility: accessibility, published: published },
-            data:       { resourceID: $("#editResourceID").val(), titleText: $("#titleText").val(), parentResourcesID: JSON.stringify(arrayparents), descriptionText: $("#descriptionText").val(), resourceURL: $("#resourceURL").val(), resourceAltURL: $("#resourceAltURL").val(), resourceFormatID: $("#resourceFormatID").val(), resourceTypeID: $("#resourceTypeID").val(), archiveInd: getCheckboxValue('archiveInd'), aliasTypes: aliasTypeList, aliasNames: aliasNameList, organizationRoles: organizationRoleList, organizations: organizationList, isbnOrISSN: JSON.stringify(arrayisbn), resourceLanguages: JSON.stringify(resourceLanguages), resourceStatusID: $("#resourceStatusID").val(), accessibility: accessibility, published: published, publicationComment: $("#publicationComment").val() },
+            data:       { resourceID: $("#editResourceID").val(), titleText: $("#titleText").val(), parentResourcesID: JSON.stringify(arrayparents), descriptionText: $("#descriptionText").val(), resourceURL: $("#resourceURL").val(), resourceAltURL: $("#resourceAltURL").val(), resourceFormatID: $("#resourceFormatID").val(), resourceTypeID: $("#resourceTypeID").val(), archiveInd: getCheckboxValue('archiveInd'), aliasTypes: aliasTypeList, aliasNames: aliasNameList, organizationRoles: organizationRoleList, organizations: organizationList, isbnOrISSN: JSON.stringify(arrayisbn), resourceLanguages: JSON.stringify(resourceLanguages), resourceStatusID: $("#resourceStatusID").val(), resourceLogo: $('#resourceLogoFileName').val(), accessibility: accessibility, published: published, publicationComment: $("#publicationComment").val() },
             success:    function(html) {
                 if (html){
                     $("#span_errors").html(html);

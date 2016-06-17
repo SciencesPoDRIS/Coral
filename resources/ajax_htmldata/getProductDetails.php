@@ -80,11 +80,17 @@
 			</th>
 			</tr>
 
+			<?php
+			if(($resource->logo) && ($resource->logo != '')) {
+			?>
 			<tr>
 				<td>
 					<img src="logo/<?php echo $resource->logo ?>" alt="logo" style="max-width: 200px; max-height: 200px;"/>
 				</td>
 			</tr>
+			<?php
+			}
+			?>
 
 			<tr>
 			<td style='vertical-align:top;width:115px;'><?php echo _("Record ID:");?></td>
