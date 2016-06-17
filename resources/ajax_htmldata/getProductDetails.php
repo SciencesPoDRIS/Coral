@@ -338,7 +338,7 @@
 			// @annelhote : Display resource's publication status
 			?>
 			<tr>
-			<td style='vertical-align:top;width:115px;'><?php echo _("Published") . ":"; ?></td>
+			<td style='vertical-align:top;width:115px;'><?php echo _("Published") . ':'; ?></td>
 			<?php
 			if($resource->published == 0) {
 			?>
@@ -356,8 +356,21 @@
 			// @annelhote : Display resource's publication comment
 			if ($resource->publicationComment){ ?>
 				<tr>
-				<td style='vertical-align:top;width:115px;'><?php echo _("Publication Comment:");?></td>
+				<td style='vertical-align:top;width:115px;'><?php echo _("Publication Comment") . ':';?></td>
 				<td style='width:345px;'><?php echo nl2br($resource->publicationComment); ?></td>
+				</tr>
+			<?php
+			}
+
+			// @annelhote : Display resource's publication date
+			if ($resource->publicationDate){
+			// @annelhote : tranform MySQL Date into javascript one
+			$a = strptime($resource->publicationDate, '%Y-%m-%d');
+			$d = sprintf("%02d", ($a['tm_mon'] + 1)) . '/' . sprintf("%02d", $a['tm_mday']) . '/' . ($a['tm_year'] + 1900);
+			?>
+				<tr>
+				<td style='vertical-align:top;width:115px;'><?php echo _("Publication Date") . ':';?></td>
+				<td style='width:345px;'><?php echo $d; ?></td>
 				</tr>
 			<?php
 			}
