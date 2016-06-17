@@ -24,6 +24,10 @@
 		$resourceStatusObj = new ResourceStatus();
 		$resourceStatusArray = $resourceStatusObj->sortedArray();
 
+		// @annelhote : tranform MySQL Date into javascript one
+		$a = strptime($resource->publicationDate, '%Y-%m-%d');
+		$d = sprintf("%02d", ($a['tm_mon'] + 1)) . '/' . sprintf("%02d", $a['tm_mday']) . '/' . ($a['tm_year'] + 1900);
+
     //get parents resources
     $sanitizedInstance = array();
     $instance = new Resource();
@@ -183,9 +187,15 @@
 					</tr>
 
 					<!-- @annelhote : Add resource's publication comment -->
-					<tr>
+					<tr class="publicationComment">
 					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='publicationComment'><?php echo _("Publication Comment") . ":" ;?></label></td>
 					<td><textarea rows='4' id='publicationComment' name='publicationComment' style='width:260px' class='changeInput' ><?php echo $resource->publicationComment; ?></textarea></td>
+					</tr>
+
+					<!-- @annelhote : Add resource's publication date -->
+					<tr class="publicationDate">
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='publicationDate'><?php echo _("Publication Date") . ":" ;?></label></td>
+					<td><input type="text" id="publicationDate" value="<?php echo $d; ?>" /></td>
 					</tr>
 
 					</table>

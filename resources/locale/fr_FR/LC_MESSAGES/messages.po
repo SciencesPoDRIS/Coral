@@ -2374,3 +2374,7 @@ msgstr "Publié"
 #: ajax_forms/getUpdateProductForm.php:179 @annelhote
 msgid "Publication Comment"
 msgstr "Commentaire de publication"
+
+#: ajax_forms/getUpdateProductForm.php:193 @annelhote
+msgid "Publication Date"
+msgstr "Date de publication"

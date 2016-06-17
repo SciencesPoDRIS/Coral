@@ -98,6 +98,29 @@ $(function(){
         }
     );
 
+    // @annelhote : Add a datePicker on the publication date
+    $("#publicationDate").datePicker();
+
+    // @annelhote : if "published" is checked, display the publication comment and the publication date
+    if($('#published').attr('checked')) {
+        $('.publicationComment').hide();
+        $('.publicationDate').hide();
+    } else {
+        $('.publicationComment').show();
+        $('.publicationDate').show();
+    }
+    $('#published').click(
+        function() {
+            if($('#published').attr('checked')) {
+                $('.publicationComment').hide();
+                $('.publicationDate').hide();
+            } else {
+                $('.publicationComment').show();
+                $('.publicationDate').show();
+            }
+        }
+    );
+
     $("input[name='parentResourceName']").autocomplete('ajax_processing.php?action=getResourceList', {
         minChars: 2,
         max: 20,
@@ -499,6 +522,9 @@ function submitProductForm(){
             published = 1;
         }
 
+        // @annelhote : format resource's publication date
+        d = new Date($('#publicationDate').val());
+
         // @annelhote : Add resource's status
         // @annelhote : Add resource's languages
         // @annelhote : Add resource's logo
@@ -510,7 +536,7 @@ function submitProductForm(){
             type:       "POST",
             url:        "ajax_processing.php?action=submitProductUpdate",
             cache:      false,
-            data:       { resourceID: $("#editResourceID").val(), titleText: $("#titleText").val(), parentResourcesID: JSON.stringify(arrayparents), descriptionText: $("#descriptionText").val(), resourceURL: $("#resourceURL").val(), resourceAltURL: $("#resourceAltURL").val(), resourceFormatID: $("#resourceFormatID").val(), resourceTypeID: $("#resourceTypeID").val(), archiveInd: getCheckboxValue('archiveInd'), aliasTypes: aliasTypeList, aliasNames: aliasNameList, organizationRoles: organizationRoleList, organizations: organizationList, isbnOrISSN: JSON.stringify(arrayisbn), resourceLanguages: JSON.stringify(resourceLanguages), resourceStatusID: $("#resourceStatusID").val(), resourceLogo: $('#resourceLogoFileName').val(), accessibility: accessibility, published: published, publicationComment: $("#publicationComment").val() },
+            data:       { resourceID: $("#editResourceID").val(), titleText: $("#titleText").val(), parentResourcesID: JSON.stringify(arrayparents), descriptionText: $("#descriptionText").val(), resourceURL: $("#resourceURL").val(), resourceAltURL: $("#resourceAltURL").val(), resourceFormatID: $("#resourceFormatID").val(), resourceTypeID: $("#resourceTypeID").val(), archiveInd: getCheckboxValue('archiveInd'), aliasTypes: aliasTypeList, aliasNames: aliasNameList, organizationRoles: organizationRoleList, organizations: organizationList, isbnOrISSN: JSON.stringify(arrayisbn), resourceLanguages: JSON.stringify(resourceLanguages), resourceStatusID: $("#resourceStatusID").val(), resourceLogo: $('#resourceLogoFileName').val(), accessibility: accessibility, published: published, publicationComment: $("#publicationComment").val(), publicationDate: d.asString('yyyy-mm-dd') },
             success:    function(html) {
                 if (html){
                     $("#span_errors").html(html);

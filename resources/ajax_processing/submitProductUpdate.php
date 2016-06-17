@@ -23,6 +23,8 @@
 		$resource->published			= $_POST['published'];
 		// @annelhote : Update resource's publication status
 		$resource->publicationComment	= $_POST['publicationComment'];
+		// @annelhote : Update resource's publication date
+		$resource->publicationDate		= $_POST['publicationDate'];
 
     $isbnarray = json_decode($_POST['isbnOrISSN']);
     $resource->setIsbnOrIssn($isbnarray);

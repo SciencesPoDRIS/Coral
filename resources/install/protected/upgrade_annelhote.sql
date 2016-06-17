@@ -59,3 +59,6 @@ ALTER TABLE `Resource` ADD COLUMN `published` int(11) default 0 AFTER `accessibi
 
 
 ALTER TABLE `Resource` ADD COLUMN `publicationComment` text default NULL AFTER `published`;
+
+
+ALTER TABLE `Resource` ADD COLUMN `publicationDate` DATE NULL DEFAULT NULL AFTER `publicationComment`;
