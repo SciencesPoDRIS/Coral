@@ -424,6 +424,26 @@ $(".addOrganization").live('click', function () {
     }
 });
 
+// @annelhote : Implement function to add new tuto to a resource
+$('.addTuto').click(function() {
+    var clone = $('.tutoToFill').clone();
+    clone.removeClass('tutoToFill');
+    clone.addClass('tutoFilled');
+    clone.find('.addTutoNameToFill').val($('.addTutoName').val());
+    clone.find('.addTutoUrlToFill').val($('.addTutoUrl').val());
+    clone.show();
+    $('.addTutoName').val('');
+    $('.addTutoUrl').val('');
+    $('.tutoTable tr').last().after(clone);
+});
+
+// @annelhote : Implement function to remove tuto to a resource
+$('.removeTuto').live('click', function() {
+    $(this).parent().parent().fadeTo(400, 0, function () {
+        $(this).parent().remove();
+    });
+    return false;
+});
 
 function validateForm (){
     myReturn=0;
@@ -522,8 +542,14 @@ function submitProductForm(){
             published = 1;
         }
 
-        // @annelhote : format resource's publication date
+        // @annelhote : Format resource's publication date
         d = new Date($('#publicationDate').val());
+
+        // @annelhote : Set tuts array
+        var arrayTutos = Array();
+        $('.tutoFilled').each(function() {
+            arrayTutos.push({'name' : $(this).find('.addTutoNameToFill').val(), 'url' : $(this).find('.addTutoUrlToFill').val()});
+        });
 
         // @annelhote : Add resource's status
         // @annelhote : Add resource's languages
@@ -531,12 +557,13 @@ function submitProductForm(){
         // @annelhote : Add resource's accessibility
         // @annelhote : Add resource's publication status
         // @annelhote : Add resource's publication comment
+        // @annelhote : Add resource's tutos
         $('#submitProductChanges').attr("disabled", "disabled");
         $.ajax({
             type:       "POST",
             url:        "ajax_processing.php?action=submitProductUpdate",
             cache:      false,
-            data:       { resourceID: $("#editResourceID").val(), titleText: $("#titleText").val(), parentResourcesID: JSON.stringify(arrayparents), descriptionText: $("#descriptionText").val(), resourceURL: $("#resourceURL").val(), resourceAltURL: $("#resourceAltURL").val(), resourceFormatID: $("#resourceFormatID").val(), resourceTypeID: $("#resourceTypeID").val(), archiveInd: getCheckboxValue('archiveInd'), aliasTypes: aliasTypeList, aliasNames: aliasNameList, organizationRoles: organizationRoleList, organizations: organizationList, isbnOrISSN: JSON.stringify(arrayisbn), resourceLanguages: JSON.stringify(resourceLanguages), resourceStatusID: $("#resourceStatusID").val(), resourceLogo: $('#resourceLogoFileName').val(), accessibility: accessibility, published: published, publicationComment: $("#publicationComment").val(), publicationDate: d.asString('yyyy-mm-dd') },
+            data:       { resourceID: $("#editResourceID").val(), titleText: $("#titleText").val(), parentResourcesID: JSON.stringify(arrayparents), descriptionText: $("#descriptionText").val(), resourceURL: $("#resourceURL").val(), resourceAltURL: $("#resourceAltURL").val(), resourceFormatID: $("#resourceFormatID").val(), resourceTypeID: $("#resourceTypeID").val(), archiveInd: getCheckboxValue('archiveInd'), aliasTypes: aliasTypeList, aliasNames: aliasNameList, organizationRoles: organizationRoleList, organizations: organizationList, isbnOrISSN: JSON.stringify(arrayisbn), resourceLanguages: JSON.stringify(resourceLanguages), resourceStatusID: $("#resourceStatusID").val(), resourceLogo: $('#resourceLogoFileName').val(), accessibility: accessibility, published: published, publicationComment: $("#publicationComment").val(), publicationDate: d.asString('yyyy-mm-dd'), tutoResource : JSON.stringify(arrayTutos) },
             success:    function(html) {
                 if (html){
                     $("#span_errors").html(html);

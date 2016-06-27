@@ -1,11 +1,11 @@
--- @annelhote : Add a table to resource's languages
+-- @annelhote : Add a table for resource's languages
 
 
 DROP TABLE IF EXISTS `Language`;
 CREATE TABLE  `Language` (
   `languageId` int(11) NOT NULL auto_increment,
   `shortName` varchar(200) default NULL,
-  PRIMARY KEY  USING BTREE (`languageId`)
+  PRIMARY KEY USING BTREE (`languageId`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
@@ -26,7 +26,8 @@ CREATE TABLE  `ResourceLanguage` (
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
--- @annelhote : Add a table to resource's status
+-- @annelhote : Add a table for resource's status
+
 
 ALTER TABLE `Resource` ADD COLUMN `resourceStatusID` int(11) default NULL AFTER `resourceAltURL`;
 
@@ -35,7 +36,7 @@ DROP TABLE IF EXISTS `ResourceStatus`;
 CREATE TABLE  `ResourceStatus` (
   `resourceStatusID` int(11) NOT NULL auto_increment,
   `shortName` varchar(200) default NULL,
-  PRIMARY KEY  USING BTREE (`resourceStatusID`)
+  PRIMARY KEY USING BTREE (`resourceStatusID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
@@ -46,19 +47,44 @@ INSERT INTO `ResourceStatus` (resourceStatusID, shortName) values (1, 'test');
 INSERT INTO `ResourceStatus` (resourceStatusID, shortName) values (2, 'new');
 
 
--- @annelhote : Add a field to resource's logo
+-- @annelhote : Add a table for resource's tutos
+
+
+DROP TABLE IF EXISTS `ResourceTuto`;
+CREATE TABLE  `ResourceTuto` (
+  `resourceTutoID` int(11) NOT NULL auto_increment,
+  `resourceID` int(11) NOT NULL,
+  `name` varchar(200) default NULL,
+  `url` varchar(200) default NULL,
+  PRIMARY KEY USING BTREE (`resourceTutoID`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+-- @annelhote : Add a field for resource's logo
 
 
 ALTER TABLE `Resource` ADD COLUMN `logo` varchar(45) default NULL AFTER `resourceStatusID`;
 
 
+-- @annelhote : Add a field for resource's accessibility
+
+
 ALTER TABLE `Resource` ADD COLUMN `accessibility` int(11) default 0 AFTER `logo`;
+
+
+-- @annelhote : Add a field for resource's publication
 
 
 ALTER TABLE `Resource` ADD COLUMN `published` int(11) default 0 AFTER `accessibility`;
 
 
+-- @annelhote : Add a field for resource's publication comment
+
+
 ALTER TABLE `Resource` ADD COLUMN `publicationComment` text default NULL AFTER `published`;
+
+
+-- @annelhote : Add a field for resource's publication date
 
 
 ALTER TABLE `Resource` ADD COLUMN `publicationDate` DATE NULL DEFAULT NULL AFTER `publicationComment`;

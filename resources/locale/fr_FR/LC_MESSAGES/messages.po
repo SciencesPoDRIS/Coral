@@ -2378,3 +2378,12 @@ msgstr "Commentaire de publication"
 #: ajax_forms/getUpdateProductForm.php:193 @annelhote
 msgid "Publication Date"
 msgstr "Date de publication"
+
+#: ajax_forms/getUpdateProductForm.php:524 @annelhote
+msgid "Tutos"
+msgstr "Tutos"
+
+#: ajax_forms/getUpdateProductForm.php:546 @annelhote
+msgid "add tuto"
+msgstr "Ajouter un tuto"
+add organization

@@ -26,8 +26,8 @@
 		// @annelhote : Update resource's publication date
 		$resource->publicationDate		= $_POST['publicationDate'];
 
-    $isbnarray = json_decode($_POST['isbnOrISSN']);
-    $resource->setIsbnOrIssn($isbnarray);
+		$isbnarray = json_decode($_POST['isbnOrISSN']);
+		$resource->setIsbnOrIssn($isbnarray);
 
 		//to determine status id
 		$status = new Status();
@@ -80,6 +80,25 @@
 				$resourceLanguage->languageId = $languageId;
 				try {
 					$resourceLanguage->save();
+				} catch (Exception $e) {
+					echo $e->getMessage();
+				}
+			}
+		}
+
+		// @annelhote : Update ressource's tutos
+		// First remove all existing tutos
+		$resource->removeResourceTutos();
+		// Then save tutos
+		if ($_POST['tutoResource']) {
+			$resourceTutosArray = json_decode($_POST['tutoResource']);
+			foreach($resourceTutosArray as $tuto) {
+				$resourceTuto = new ResourceTuto();
+				$resourceTuto->resourceID = $resourceID;
+				$resourceTuto->name = $tuto->{'name'};
+				$resourceTuto->url = $tuto->{'url'};
+				try {
+					$resourceTuto->save();
 				} catch (Exception $e) {
 					echo $e->getMessage();
 				}

@@ -365,8 +365,29 @@ class Resource extends DatabaseObject {
 		return $this->db->processQuery($query);
 	}
 
+	// @anelhote : Remove all the tutos from the resource
+	public function removeResourceTutos() {
+		$query = "DELETE FROM ResourceTuto WHERE resourceID = '" . $this->resourceID . "'";
+		return $this->db->processQuery($query);
+	}
 
-
+	// @annelhote : Get all the tutos from the resource
+	public function getTutos() {
+		$query = "SELECT * FROM ResourceTuto WHERE resourceID = '" . $this->resourceID . "' order by name";
+		$result = $this->db->processQuery($query, 'assoc');
+		$objects = array();
+		//need to do this since it could be that there's only one request and this is how the dbservice returns result
+		if (isset($result['resourceID'])) {
+			$object = new ResourceTuto(new NamedArguments(array('primaryKey' => $result['resourceTutoID'])));
+			array_push($objects, $object);
+		} else {
+			foreach ($result as $row) {
+				$object = new ResourceTuto(new NamedArguments(array('primaryKey' => $row['resourceTutoID'])));
+				array_push($objects, $object);
+			}
+		}
+		return $objects;
+	}
 
 	//returns array of alias objects
 	public function getAliases(){

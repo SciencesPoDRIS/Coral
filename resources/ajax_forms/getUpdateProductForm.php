@@ -28,17 +28,17 @@
 		$a = strptime($resource->publicationDate, '%Y-%m-%d');
 		$d = sprintf("%02d", ($a['tm_mon'] + 1)) . '/' . sprintf("%02d", $a['tm_mday']) . '/' . ($a['tm_year'] + 1900);
 
-    //get parents resources
-    $sanitizedInstance = array();
-    $instance = new Resource();
-    $parentResourceArray = array();
-    foreach ($resource->getParentResources() as $instance) {
-      foreach (array_keys($instance->attributeNames) as $attributeName) {
-        $sanitizedInstance[$attributeName] = $instance->$attributeName;
-      }
-      $sanitizedInstance[$instance->primaryKeyName] = $instance->primaryKey;
-      array_push($parentResourceArray, $sanitizedInstance);
-    }
+		//get parents resources
+		$sanitizedInstance = array();
+		$instance = new Resource();
+		$parentResourceArray = array();
+		foreach ($resource->getParentResources() as $instance) {
+			foreach (array_keys($instance->attributeNames) as $attributeName) {
+				$sanitizedInstance[$attributeName] = $instance->$attributeName;
+			}
+			$sanitizedInstance[$instance->primaryKeyName] = $instance->primaryKey;
+			array_push($parentResourceArray, $sanitizedInstance);
+		}
 
 		// @annelhote : get all languages
 		$languageObj = new Language();
@@ -61,15 +61,11 @@
 			foreach (array_keys($instance->attributeNames) as $attributeName) {
 				$sanitizedInstance[$attributeName] = $instance->$attributeName;
 			}
-
 			$sanitizedInstance[$instance->primaryKeyName] = $instance->primaryKey;
-
 			$aliasType = new AliasType(new NamedArguments(array('primaryKey' => $instance->aliasTypeID)));
 			$sanitizedInstance['aliasTypeShortName'] = $aliasType->shortName;
-
 			array_push($aliasArray, $sanitizedInstance);
 		}
-
 
 		//get all organization roles for output in drop down
 		$organizationRoleArray = array();
@@ -78,6 +74,21 @@
 
 		//get organizations (already returned in an array)
 		$orgArray = $resource->getOrganizationArray();
+
+		// @annelhote : Get all tutos
+		$sanitizedInstance = array();
+		$instance = new ResourceTuto();
+		$tutosArray = array();
+		foreach ($resource->getTutos() as $tuto) {
+			foreach (array_keys($tuto->attributeNames) as $attributeName) {
+				$sanitizedInstance[$attributeName] = $tuto->$attributeName;
+			}
+			$sanitizedInstance[$tuto->primaryKeyName] = $tuto->primaryKey;
+			// $aliasType = new AliasType(new NamedArguments(array('primaryKey' => $tuto->aliasTypeID)));
+			// $sanitizedInstance['aliasTypeShortName'] = $aliasType->shortName;
+			array_push($tutosArray, $sanitizedInstance);
+		}
+
 ?>
 		<div id='div_resourceForm'>
 		<form id='resourceForm'>
@@ -517,6 +528,85 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 			</table>
 
 		</td>
+		</tr>
+
+		<tr style='vertical-align:top;'>
+			<td>
+				<span class='surroundBoxTitle'>&nbsp;&nbsp;<label for='resourceFormatID'><b><?php echo _("Tutos") . ':';?></b></label>&nbsp;&nbsp;</span>
+				<table class='surroundBox' style='width:380px;'>
+					<tr>
+						<td>
+							<table class='noBorder smallPadding' style='width:330px;  margin:15px 20px 0px 20px;'>
+								<tr>
+									<td style='vertical-align:top;text-align:left;font-weight:bold;width:103px;'>
+										<div><?php echo _("Name") . ':';?></div>
+									</td>
+									<td style='vertical-align:top;text-align:left;font-weight:bold;width:160px;'>
+										<div><?php echo _("URL:");?><div>
+									</td>
+									<td>&nbsp;</td>
+								</tr>
+								<tr>
+									<td style='vertical-align:top;text-align:left;'>
+										<input type='text' value = '' style='width:160px;background:#f5f8fa;' class='changeAutocomplete addTutoName' />
+									</td>
+									<td style='vertical-align:top;text-align:left;'>
+										<input type='text' value = '' style='width:160px;background:#f5f8fa;' class='changeAutocomplete addTutoUrl' />
+									</td>
+									<td style='vertical-align:top;text-align:left;width:40px;'>
+										<a href='#'><img src='images/add.gif' class='addTuto' alt='<?php echo _("add tuto");?>' title='<?php echo _("add tuto");?>' /></a>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<table class='noBorder smallPadding tutoTable' style='width:330px;margin:0px 20px 10px 20px;'>
+								<tr>
+									<td colspan='3'>
+										<hr style='width:310px;margin:0px 0px 5px 5px;' />
+									</td>
+								</tr>
+								<tr class="tutoToFill" style="display: none;">
+									<td>
+										<input type="text" style="width:160px;" value="" class="addTutoNameToFill" disabled />
+									</td>
+									<td>
+										<input type="text" style="width:160px;" value="" class="addTutoUrlToFill" disabled />
+									</td>
+									<td>
+										<a href='#'>
+											<img src='images/cross.gif' alt='<?php echo _("remove ");?>' title='<?php echo _("remove ");?>' class='removeTuto' style="vertical-align: bottom;" />
+										</a>
+									</td>
+								</tr>
+								<?php
+									if (count($tutosArray) > 0) {
+										foreach($tutosArray as $tuto) {
+								?>
+									<tr class="tutoFilled">
+										<td>
+											<input type="text" style="width:160px;" value="<?php echo $tuto['name']; ?>" class="addTutoNameToFill" disabled />
+										</td>
+										<td>
+											<input type="text" style="width:160px;" value="<?php echo $tuto['url']; ?>" class="addTutoUrlToFill" disabled />
+										</td>
+										<td>
+											<a href='#'>
+												<img src='images/cross.gif' alt='<?php echo _("remove "); ?>' title='<?php echo _("remove "); ?>' class='removeTuto' style="vertical-align: bottom;" />
+											</a>
+										</td>
+									</tr>
+								<?php
+										}
+									}
+								?>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
 		</tr>
 		</table>
 
