@@ -84,8 +84,6 @@
 				$sanitizedInstance[$attributeName] = $tuto->$attributeName;
 			}
 			$sanitizedInstance[$tuto->primaryKeyName] = $tuto->primaryKey;
-			// $aliasType = new AliasType(new NamedArguments(array('primaryKey' => $tuto->aliasTypeID)));
-			// $sanitizedInstance['aliasTypeShortName'] = $aliasType->shortName;
 			array_push($tutosArray, $sanitizedInstance);
 		}
 
@@ -551,7 +549,10 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 							<table class='noBorder smallPadding' style='width:330px;  margin:15px 20px 0px 20px;'>
 								<tr>
 									<td style='vertical-align:top;text-align:left;font-weight:bold;width:103px;'>
-										<div><?php echo _("Name") . ':';?></div>
+										<div><?php echo _("English name:");?></div>
+									</td>
+									<td style='vertical-align:top;text-align:left;font-weight:bold;width:103px;'>
+										<div><?php echo _("French name:");?></div>
 									</td>
 									<td style='vertical-align:top;text-align:left;font-weight:bold;width:160px;'>
 										<div><?php echo _("URL:");?><div>
@@ -561,6 +562,9 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 								<tr>
 									<td style='vertical-align:top;text-align:left;'>
 										<input type='text' value = '' style='width:160px;background:#f5f8fa;' class='changeAutocomplete addTutoName' />
+									</td>
+									<td style='vertical-align:top;text-align:left;'>
+										<input type='text' value = '' style='width:160px;background:#f5f8fa;' class='changeAutocomplete addTutoFrName' />
 									</td>
 									<td style='vertical-align:top;text-align:left;'>
 										<input type='text' value = '' style='width:160px;background:#f5f8fa;' class='changeAutocomplete addTutoUrl' />
@@ -585,6 +589,9 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 										<input type="text" style="width:160px;" value="" class="addTutoNameToFill" disabled />
 									</td>
 									<td>
+										<input type="text" style="width:160px;" value="" class="addTutoNameFrToFill" disabled />
+									</td>
+									<td>
 										<input type="text" style="width:160px;" value="" class="addTutoUrlToFill" disabled />
 									</td>
 									<td>
@@ -600,6 +607,9 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 									<tr class="tutoFilled">
 										<td>
 											<input type="text" style="width:160px;" value="<?php echo $tuto['name']; ?>" class="addTutoNameToFill" disabled />
+										</td>
+										<td>
+											<input type="text" style="width:160px;" value="<?php echo $tuto['name_fr']; ?>" class="addTutoNameFrToFill" disabled />
 										</td>
 										<td>
 											<input type="text" style="width:160px;" value="<?php echo $tuto['url']; ?>" class="addTutoUrlToFill" disabled />

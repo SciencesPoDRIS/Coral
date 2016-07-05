@@ -430,9 +430,11 @@ $('.addTuto').click(function() {
     clone.removeClass('tutoToFill');
     clone.addClass('tutoFilled');
     clone.find('.addTutoNameToFill').val($('.addTutoName').val());
+    clone.find('.addTutoNameFrToFill').val($('.addTutoFrName').val());
     clone.find('.addTutoUrlToFill').val($('.addTutoUrl').val());
     clone.show();
     $('.addTutoName').val('');
+    $('.addTutoFrName').val('');
     $('.addTutoUrl').val('');
     $('.tutoTable tr').last().after(clone);
 });
@@ -548,7 +550,10 @@ function submitProductForm(){
         // @annelhote : Set tuts array
         var arrayTutos = Array();
         $('.tutoFilled').each(function() {
-            arrayTutos.push({'name' : $(this).find('.addTutoNameToFill').val(), 'url' : $(this).find('.addTutoUrlToFill').val()});
+            arrayTutos.push({
+                'name' : $(this).find('.addTutoNameToFill').val(),
+                'name_fr' : $(this).find('.addTutoNameFrToFill').val(),
+                'url' : $(this).find('.addTutoUrlToFill').val()});
         });
 
         // @annelhote : Add resource's status

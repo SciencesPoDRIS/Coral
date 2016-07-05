@@ -65,6 +65,18 @@
 			$resourceLanguageObj = new ResourceLanguage();
 			$resourceLanguageArray = $resourceLanguageObj->getResourceLanguages($resourceID);
 
+			// @annelhote : Get all tutos
+			$sanitizedInstance = array();
+			$instance = new ResourceTuto();
+			$tutosArray = array();
+			foreach ($resource->getTutos() as $tuto) {
+				foreach (array_keys($tuto->attributeNames) as $attributeName) {
+					$sanitizedInstance[$attributeName] = $tuto->$attributeName;
+				}
+				$sanitizedInstance[$tuto->primaryKeyName] = $tuto->primaryKey;
+				array_push($tutosArray, $sanitizedInstance);
+			}
+
 		?>
 		<table class='linedFormTable' style='width:460px;'>
                         <tr>
@@ -299,7 +311,7 @@
 			}
 
 			// @annelhote : Display resource's language
-			if (count($resourceLanguageArray) > 0){ ?>
+			if ($resourceLanguageArray && count($resourceLanguageArray) > 0){ ?>
 				<tr>
 				<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='resourceLanguageID'><?php echo _("Language:");?></label></td>
 				<td>
@@ -383,6 +395,27 @@
 				</tr>
 			<?php
 			}
+
+			// @annelhote : Display resource's tutos
+			if ($tutosArray && (count($tutosArray) > 0)) {
+			?>
+				<tr>
+				<td style='vertical-align:top;width:115px;'><?php echo _("Tutos") . ':';?></td>
+				<td>
+			<?php
+
+			foreach ($tutosArray as $tuto) {
+				echo $tuto["name"] . "<br />";
+				echo $tuto["name_fr"] . "<br />";
+				echo "<a href=" . $tuto["url"] . " target='_blank'>" . $tuto["url"] . "</a><br /><br />";
+			}
+
+			?>
+				</td>
+				</tr>
+			<?php
+			}
+
 			?>
 
 		</table>
