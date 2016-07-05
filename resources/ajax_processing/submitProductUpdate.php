@@ -25,6 +25,10 @@
 		$resource->publicationComment	= $_POST['publicationComment'];
 		// @annelhote : Update resource's publication date
 		$resource->publicationDate		= $_POST['publicationDate'];
+		// @annelhote : Update resource's title translated in french
+		$resource->titleText_fr			= $_POST['titleText_fr'];
+		// @annelhote : Update resource's description translated in french
+		$resource->descriptionText_fr	= $_POST['descriptionText_fr'];
 
 		$isbnarray = json_decode($_POST['isbnOrISSN']);
 		$resource->setIsbnOrIssn($isbnarray);

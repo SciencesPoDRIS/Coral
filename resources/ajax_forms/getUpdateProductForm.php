@@ -129,13 +129,25 @@
 				<td style='width:360px;'>
 					<table>
 					<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='titleText'><?php echo _("Name:");?></label></td>
-					<td><input type='text' id='titleText' name='titleText' value = "<?php echo $resource->titleText; ?>" style='width:260px;' class='changeInput' /><span id='span_error_titleText' class='smallDarkRedText'></span></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='titleText'><?php echo _("English name:");?></label></td>
+					<td><input type='text' id='titleText' name='titleText' value = "<?php echo $resource->titleText; ?>" style='width:260px;' class='changeInput' /><span id='span_error_titleText_fr' class='smallDarkRedText'></span></td>
+					</tr>
+
+					<!-- @annelhote : Add field to translate title in french -->
+					<tr>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='titleText_fr'><?php echo _("French name:");?></label></td>
+					<td><input type='text' id='titleText_fr' name='titleText_fr' value = "<?php echo $resource->titleText_fr; ?>" style='width:260px;' class='changeInput' /><span id='span_error_titleText' class='smallDarkRedText'></span></td>
 					</tr>
 
 					<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='descriptionText'><?php echo _("Description:");?></label></td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='descriptionText'><?php echo _("English description:");?></label></td>
 					<td><textarea rows='4' id='descriptionText' name='descriptionText' style='width:260px' class='changeInput' ><?php echo $resource->descriptionText; ?></textarea></td>
+					</tr>
+
+					<!-- @annelhote : Add field to translate description in french -->
+					<tr>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='descriptionText_fr'><?php echo _("French description:");?></label></td>
+					<td><textarea rows='4' id='descriptionText_fr' name='descriptionText_fr' style='width:260px' class='changeInput' ><?php echo $resource->descriptionText_fr; ?></textarea></td>
 					</tr>
 
 					<tr>

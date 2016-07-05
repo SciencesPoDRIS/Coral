@@ -91,8 +91,6 @@ msgid "Alt URL:"
 msgstr "URL Alt:"
 
 #: summary.php:355 ajax_forms/getNewResourceForm.php:105
-#: ajax_forms/getUpdateProductForm.php:96
-#: ajax_htmldata/getProductDetails.php:265
 msgid "Description:"
 msgstr "Description:"
 
@@ -999,7 +997,7 @@ msgid "Add Attachment"
 msgstr "Ajouter pièce jointe"
 
 #: ajax_forms/getAttachmentForm.php:27 ajax_forms/getNewResourceForm.php:100
-#: ajax_forms/getContactForm.php:43 ajax_forms/getUpdateProductForm.php:91
+#: ajax_forms/getContactForm.php:43
 #: ajax_forms/getAdminWorkflowForm.php:123
 msgid "Name:"
 msgstr "Nom:"
@@ -2387,3 +2385,21 @@ msgstr "Tutos"
 msgid "add tuto"
 msgstr "Ajouter un tuto"
 add organization
+
+#: ajax_forms/getUpdateProductForm.php:132
+msgid "English name:"
+msgstr "Nom en anglais:"
+
+#: ajax_forms/getUpdateProductForm.php:138
+msgid "French name:"
+msgstr "Nom en français:"
+
+#: ajax_forms/getUpdateProductForm.php:143
+#: ajax_htmldata/getProductDetails.php:286
+msgid "English description:"
+msgstr "Description en anglais:"
+
+#: ajax_forms/getUpdateProductForm.php:149
+#: ajax_htmldata/getProductDetails.php:295
+msgid "French description:"
+msgstr "Description en français:"

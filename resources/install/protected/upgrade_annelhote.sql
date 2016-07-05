@@ -92,3 +92,15 @@ ALTER TABLE `Resource` ADD COLUMN `publicationComment` text default NULL AFTER `
 
 
 ALTER TABLE `Resource` ADD COLUMN `publicationDate` DATE NULL DEFAULT NULL AFTER `publicationComment`;
+
+
+-- @annelhote : Add a field for resource's title in french
+
+
+ALTER TABLE `Resource` ADD COLUMN `titleText_fr` varchar(200) NULL DEFAULT NULL AFTER `publicationDate`;
+
+
+-- @annelhote : Add a field for resource's description in french
+
+
+ALTER TABLE `Resource` ADD COLUMN `descriptionText_fr` text NULL DEFAULT NULL AFTER `titleText_fr`;

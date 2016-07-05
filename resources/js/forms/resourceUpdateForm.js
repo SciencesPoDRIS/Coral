@@ -558,12 +558,14 @@ function submitProductForm(){
         // @annelhote : Add resource's publication status
         // @annelhote : Add resource's publication comment
         // @annelhote : Add resource's tutos
+        // @annelhote : Add title translation in french
+        // @annelhote : Add description translation in french
         $('#submitProductChanges').attr("disabled", "disabled");
         $.ajax({
             type:       "POST",
             url:        "ajax_processing.php?action=submitProductUpdate",
             cache:      false,
-            data:       { resourceID: $("#editResourceID").val(), titleText: $("#titleText").val(), parentResourcesID: JSON.stringify(arrayparents), descriptionText: $("#descriptionText").val(), resourceURL: $("#resourceURL").val(), resourceAltURL: $("#resourceAltURL").val(), resourceFormatID: $("#resourceFormatID").val(), resourceTypeID: $("#resourceTypeID").val(), archiveInd: getCheckboxValue('archiveInd'), aliasTypes: aliasTypeList, aliasNames: aliasNameList, organizationRoles: organizationRoleList, organizations: organizationList, isbnOrISSN: JSON.stringify(arrayisbn), resourceLanguages: JSON.stringify(resourceLanguages), resourceStatusID: $("#resourceStatusID").val(), resourceLogo: $('#resourceLogoFileName').val(), accessibility: accessibility, published: published, publicationComment: $("#publicationComment").val(), publicationDate: d.asString('yyyy-mm-dd'), tutoResource : JSON.stringify(arrayTutos) },
+            data:       { resourceID: $("#editResourceID").val(), titleText: $("#titleText").val(), parentResourcesID: JSON.stringify(arrayparents), descriptionText: $("#descriptionText").val(), resourceURL: $("#resourceURL").val(), resourceAltURL: $("#resourceAltURL").val(), resourceFormatID: $("#resourceFormatID").val(), resourceTypeID: $("#resourceTypeID").val(), archiveInd: getCheckboxValue('archiveInd'), aliasTypes: aliasTypeList, aliasNames: aliasNameList, organizationRoles: organizationRoleList, organizations: organizationList, isbnOrISSN: JSON.stringify(arrayisbn), resourceLanguages: JSON.stringify(resourceLanguages), resourceStatusID: $("#resourceStatusID").val(), resourceLogo: $('#resourceLogoFileName').val(), accessibility: accessibility, published: published, publicationComment: $("#publicationComment").val(), publicationDate: d.asString('yyyy-mm-dd'), tutoResource : JSON.stringify(arrayTutos), titleText_fr: $("#titleText_fr").val(), descriptionText_fr: $("#descriptionText_fr").val() },
             success:    function(html) {
                 if (html){
                     $("#span_errors").html(html);

@@ -283,8 +283,17 @@
 
 			if ($resource->descriptionText){ ?>
 				<tr>
-				<td style='vertical-align:top;width:115px;'><?php echo _("Description:");?></td>
+				<td style='vertical-align:top;width:115px;'><?php echo _("English description:");?></td>
 				<td style='width:345px;'><?php echo nl2br($resource->descriptionText); ?></td>
+				</tr>
+			<?php
+			}
+
+			// @annelhote : Display resource's description in french
+			if ($resource->descriptionText_fr){ ?>
+				<tr>
+				<td style='vertical-align:top;width:115px;'><?php echo _("French description:");?></td>
+				<td style='width:345px;'><?php echo nl2br($resource->descriptionText_fr); ?></td>
 				</tr>
 			<?php
 			}
