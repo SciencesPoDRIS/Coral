@@ -15,6 +15,10 @@ ALTER TABLE `Language` ADD INDEX `shortName` ( `shortName` );
 -- ISO 639-1 : https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
 INSERT INTO `Language` (languageId, shortName) values (1, 'en');
 INSERT INTO `Language` (languageId, shortName) values (2, 'fr');
+INSERT INTO `Language` (languageId, shortName) values (3, 'es');
+INSERT INTO `Language` (languageId, shortName) values (4, 'pt');
+INSERT INTO `Language` (languageId, shortName) values (5, 'de');
+INSERT INTO `Language` (languageId, shortName) values (6, 'mul');
 
 
 DROP TABLE IF EXISTS `ResourceLanguage`;

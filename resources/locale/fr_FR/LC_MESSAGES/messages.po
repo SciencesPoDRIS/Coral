@@ -310,7 +310,7 @@ msgid "Spanish"
 msgstr "Espagnol"
 
 #: LangCodes.php:20
-msgid "Portuguese"
+msgid "Portugese"
 msgstr "Portugais"
 
 #: LangCodes.php:21
