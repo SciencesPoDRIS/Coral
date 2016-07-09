@@ -406,7 +406,6 @@
 
 			foreach ($tutosArray as $tuto) {
 				echo $tuto["name"] . "<br />";
-				echo $tuto["name_fr"] . "<br />";
 				echo "<a href=" . $tuto["url"] . " target='_blank'>" . $tuto["url"] . "</a><br /><br />";
 			}
 

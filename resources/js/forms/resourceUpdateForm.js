@@ -552,7 +552,6 @@ function submitProductForm(){
         $('.tutoFilled').each(function() {
             arrayTutos.push({
                 'name' : $(this).find('.addTutoNameToFill').val(),
-                'name_fr' : $(this).find('.addTutoNameFrToFill').val(),
                 'url' : $(this).find('.addTutoUrlToFill').val()});
         });
 

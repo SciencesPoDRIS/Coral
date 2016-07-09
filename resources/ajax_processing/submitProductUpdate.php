@@ -100,7 +100,6 @@
 				$resourceTuto = new ResourceTuto();
 				$resourceTuto->resourceID = $resourceID;
 				$resourceTuto->name = $tuto->{'name'};
-				$resourceTuto->name_fr = $tuto->{'name_fr'};
 				$resourceTuto->url = $tuto->{'url'};
 				try {
 					$resourceTuto->save();
