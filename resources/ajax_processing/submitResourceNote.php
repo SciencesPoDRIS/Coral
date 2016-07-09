@@ -16,6 +16,7 @@
 		$resourceNote->tabName 				= $_POST['tabName'];
 		$resourceNote->resourceID 			= $_POST['resourceID'];
 		$resourceNote->noteText 			= $_POST['noteText'];
+		$resourceNote->noteTextFr 			= $_POST['noteTextFr'];
 
 		try {
 			$resourceNote->save();

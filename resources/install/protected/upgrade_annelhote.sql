@@ -104,3 +104,9 @@ ALTER TABLE `Resource` ADD COLUMN `titleText_fr` varchar(200) NULL DEFAULT NULL 
 
 
 ALTER TABLE `Resource` ADD COLUMN `descriptionText_fr` text NULL DEFAULT NULL AFTER `titleText_fr`;
+
+
+-- @annelhote : Add a field for note's description in french
+
+
+ALTER TABLE `ResourceNote` ADD COLUMN `noteTextFr` TEXT NULL DEFAULT NULL AFTER `noteText`;

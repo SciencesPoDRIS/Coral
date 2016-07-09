@@ -45,12 +45,13 @@
 
 function submitResourceNote(){
 		if (validateForm() === true) {
+			// @annelhote : Add french description for the note
 			$('#submitResourceNoteForm').attr("disabled", "disabled"); 
 			  $.ajax({
 				 type:       "POST",
 				 url:        "ajax_processing.php?action=submitResourceNote",
 				 cache:      false,
-				 data:       { resourceNoteID: $("#editResourceNoteID").val(), noteTypeID: $("#noteTypeID").val(), tabName: $("#tab").val(), noteText: $("#noteText").val(), resourceID: $("#editResourceID").val() },
+				 data:       { resourceNoteID: $("#editResourceNoteID").val(), noteTypeID: $("#noteTypeID").val(), tabName: $("#tab").val(), noteText: $("#noteText").val(), resourceID: $("#editResourceID").val(), noteTextFr: $("#noteTextFr").val() },
 				 success:    function(html) {
 					if (html){
 						$("#span_errors").html(html);
