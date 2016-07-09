@@ -121,7 +121,9 @@
 			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("Acquisition Type");?></td><td style='width:10px;vertical-align:top;'><a href='javascript:setOrder("acquisitionType","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;vertical-align:top;'><a href='javascript:setOrder("acquisitionType","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
 			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("Status");?></td><td style='width:10px;'><a href='javascript:setOrder("S.shortName","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;'><a href='javascript:setOrder("S.shortName","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
 			<!-- @annelhote : Add new column to display the resource's publication status -->
-			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("Published");?></td></tr></table></th>
+			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("Published");?></td><td style='width:10px;'><a href='javascript:setOrder("R.published","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;'><a href='javascript:setOrder("R.published","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
+			<!-- @annelhote : Add new column to display the resource's type -->
+			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("Resource Type");?></td><td style='width:10px;'><a href='javascript:setOrder("RT.shortName","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;'><a href='javascript:setOrder("RT.shortName","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
 			<!-- @annelhote : Add new column to directly edit a resource -->
 			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("Edit ");?></td></tr></table></th>
 			<!-- @annelhote : Add new column to directly delete a resource -->
@@ -154,6 +156,9 @@
 
 				// @annelhote : add resource's publication status
 				echo "<td $classAdd>" . ($resource['published'] ? _('Yes') : _('No')) . "</td>";
+
+				// @annelhote : add resource's type
+				echo "<td $classAdd>" . $resource['shortName'] . "</td>";
 
 				// @annelhote : add modal link to directly update a resource
 				if ($user->canEdit()) {
