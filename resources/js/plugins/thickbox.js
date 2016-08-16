@@ -31,15 +31,6 @@ function tb_init(domChunk){
 		tb_show(t,a,g);
 		this.blur();
 	});
-	// @annelhote : update tb_init function to enable modal link to directly update a product
-	$(document).delegate('a.thickbox', 'click', function(e) {
-		e.preventDefault();
-		var t = this.title || this.name || null;
-		var a = this.href || this.alt;
-		var g = this.rel || false;
-		tb_show(t,a,g);
-		this.blur();
-	});
 }
 
 function tb_show(caption, url, imageGroup) {//function called when the user clicks on a thickbox link
