@@ -2403,3 +2403,7 @@ msgstr "Description en anglais:"
 #: ajax_htmldata/getProductDetails.php:295
 msgid "French description:"
 msgstr "Description en français:"
+
+#: ajax_htmldata/getProductDetails.php:301
+msgid "French title"
+msgstr "Titre en français"

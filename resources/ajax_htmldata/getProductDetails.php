@@ -78,6 +78,7 @@
 			}
 
 		?>
+
 		<table class='linedFormTable' style='width:460px;'>
                         <tr>
                                 <th width="115"></th>
@@ -103,6 +104,12 @@
 			<?php
 			}
 			?>
+
+			<!-- @annelhote : Add french title -->
+			<tr>
+			<td style='vertical-align:top;width:115px;'><?php echo _("French title");?>:</td>
+			<td style='width:345px;'><?php echo $resource->titleText_fr; ?></td>
+			</tr>
 
 			<tr>
 			<td style='vertical-align:top;width:115px;'><?php echo _("Record ID:");?></td>
