@@ -195,7 +195,7 @@
 
 					<!-- @annelhote : Add resource's publication status -->
 					<tr>
-					<td style='text-align:left'><label for='published'><b><?php echo _("Published") . ":" ; ?></b></label></td>
+					<td style='text-align:left;font-weight:bold;'><label for='published'><?php echo _("Published") . ":" ; ?></label></td>
 					<td>
 					<?php
 					if($resource->published) {
@@ -216,7 +216,15 @@
 					<!-- @annelhote : Add resource's publication date -->
 					<tr class="publicationDate">
 					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='publicationDate'><?php echo _("Publication Date") . ":" ;?></label></td>
-					<td><input type="text" id="publicationDate" value="<?php echo $d; ?>" /></td>
+					<td>
+					<?php
+					if($resource->publicationDate != '' && $resource->publicationDate != '0000-00-00') {
+						echo "<input type='text' id='publicationDate' value=" . $d . " />";
+					} else {
+						echo "<input type='text' id='publicationDate' value='' />";
+					}
+					?>
+					</td>
 					</tr>
 
 					</table>
@@ -312,7 +320,6 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 					}
 					?>
 					</select>
-
 					</td>
 					</tr>
 

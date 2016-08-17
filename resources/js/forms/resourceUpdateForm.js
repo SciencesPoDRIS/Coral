@@ -103,20 +103,20 @@ $(function(){
 
     // @annelhote : if "published" is checked, display the publication comment and the publication date
     if($('#published').attr('checked')) {
-        $('.publicationComment').hide();
-        $('.publicationDate').hide();
-    } else {
         $('.publicationComment').show();
         $('.publicationDate').show();
+    } else {
+        $('.publicationComment').hide();
+        $('.publicationDate').hide();
     }
     $('#published').click(
         function() {
             if($('#published').attr('checked')) {
-                $('.publicationComment').hide();
-                $('.publicationDate').hide();
-            } else {
                 $('.publicationComment').show();
                 $('.publicationDate').show();
+            } else {
+                $('.publicationComment').hide();
+                $('.publicationDate').hide();
             }
         }
     );
@@ -490,25 +490,22 @@ function submitProductForm(){
     aliasTypeList ='';
     $(".aliasTypeID").each(function(id) {
         aliasTypeList += $(this).val() + ":::";
-    }); 
+    });
 
     aliasNameList ='';
     $(".aliasName").each(function(id) {
         aliasNameList += $(this).val() + ":::";
-    }); 
-
+    });
 
     organizationList ='';
     $(".organizationID").each(function(id) {
         organizationList += $(this).val() + ":::";
-    }); 
+    });
 
     organizationRoleList ='';
     $(".organizationRoleID").each(function(id) {
         organizationRoleList += $(this).val() + ":::";
-    }); 
-
-
+    });
 
     if (validateForm() === true) {
         var arrayisbn = Array();
@@ -547,7 +544,7 @@ function submitProductForm(){
         // @annelhote : Format resource's publication date
         d = new Date($('#publicationDate').val());
 
-        // @annelhote : Set tuts array
+        // @annelhote : Set tutos array
         var arrayTutos = Array();
         $('.tutoFilled').each(function() {
             arrayTutos.push({
@@ -589,7 +586,7 @@ function submitProductForm(){
 
 //kill all binds done by jquery live
 function kill() {
-    $('.addAlias').die('click'); 
+    $('.addAlias').die('click');
     $('.addOrganization').die('click');
     $('.changeDefault').die('blur');
     $('.changeDefault').die('focus');
