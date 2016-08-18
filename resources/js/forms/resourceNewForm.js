@@ -515,7 +515,7 @@ function submitResource(status) {
 
     // @annelhote : Add resource's languages
     var resourceLanguages = Array();
-    $('input[name="languages"]:checked').each(function() {
+    $('#div_resourceSubmitForm input[name="languages"]:checked').each(function() {
         resourceLanguages.push($(this).val());
     });
 

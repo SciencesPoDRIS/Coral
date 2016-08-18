@@ -29,7 +29,6 @@
 		$resourceTypesLinkObj = new ResourceTypeLink();
 		$resourceTypesArray = $resourceTypesLinkObj->getResourceTypes($resourceID);
 
-
 		//get all currency for output in drop down
 		$currencyArray = array();
 		$currencyObj = new Currency();

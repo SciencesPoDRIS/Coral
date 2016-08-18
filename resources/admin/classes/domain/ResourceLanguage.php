@@ -27,7 +27,11 @@ class ResourceLanguage extends DatabaseObject {
 
 		$results = array();
 		foreach ($rows as $row) {
-			array_push($results, $row['shortName']);
+			if(is_array($row)) {
+				array_push($results, $row['shortName']);
+			} else {
+				array_push($results, $row);
+			}
 		}
 
 		return $results;
