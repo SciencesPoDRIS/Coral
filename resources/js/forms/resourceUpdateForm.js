@@ -552,6 +552,12 @@ function submitProductForm(){
                 'url' : $(this).find('.addTutoUrlToFill').val()});
         });
 
+        // @annelhote : Add resource's types
+        var resourceTypes = Array();
+        $('input[name="types"]:checked').each(function() {
+            resourceTypes.push($(this).val());
+        });
+
         // @annelhote : Add resource's status
         // @annelhote : Add resource's languages
         // @annelhote : Add resource's logo
@@ -566,7 +572,7 @@ function submitProductForm(){
             type:       "POST",
             url:        "ajax_processing.php?action=submitProductUpdate",
             cache:      false,
-            data:       { resourceID: $("#editResourceID").val(), titleText: $("#titleText").val(), parentResourcesID: JSON.stringify(arrayparents), descriptionText: $("#descriptionText").val(), resourceURL: $("#resourceURL").val(), resourceAltURL: $("#resourceAltURL").val(), resourceFormatID: $("#resourceFormatID").val(), resourceTypeID: $("#resourceTypeID").val(), archiveInd: getCheckboxValue('archiveInd'), aliasTypes: aliasTypeList, aliasNames: aliasNameList, organizationRoles: organizationRoleList, organizations: organizationList, isbnOrISSN: JSON.stringify(arrayisbn), resourceLanguages: JSON.stringify(resourceLanguages), resourceStatusID: $("#resourceStatusID").val(), resourceLogo: $('#resourceLogoFileName').val(), accessibility: accessibility, published: published, publicationComment: $("#publicationComment").val(), publicationDate: d.asString('yyyy-mm-dd'), tutoResource : JSON.stringify(arrayTutos), titleText_fr: $("#titleText_fr").val(), descriptionText_fr: $("#descriptionText_fr").val() },
+            data:       { resourceID: $("#editResourceID").val(), titleText: $("#titleText").val(), parentResourcesID: JSON.stringify(arrayparents), descriptionText: $("#descriptionText").val(), resourceURL: $("#resourceURL").val(), resourceAltURL: $("#resourceAltURL").val(), resourceFormatID: $("#resourceFormatID").val(), archiveInd: getCheckboxValue('archiveInd'), aliasTypes: aliasTypeList, aliasNames: aliasNameList, organizationRoles: organizationRoleList, organizations: organizationList, isbnOrISSN: JSON.stringify(arrayisbn), resourceLanguages: JSON.stringify(resourceLanguages), resourceStatusID: $("#resourceStatusID").val(), resourceLogo: $('#resourceLogoFileName').val(), accessibility: accessibility, published: published, publicationComment: $("#publicationComment").val(), publicationDate: d.asString('yyyy-mm-dd'), tutoResource : JSON.stringify(arrayTutos), titleText_fr: $("#titleText_fr").val(), descriptionText_fr: $("#descriptionText_fr").val(), resourceTypes: JSON.stringify(resourceTypes) },
             success:    function(html) {
                 if (html){
                     $("#span_errors").html(html);

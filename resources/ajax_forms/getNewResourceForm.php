@@ -20,10 +20,14 @@
 		$resourceFormatObj = new ResourceFormat();
 		$resourceFormatArray = $resourceFormatObj->sortedArray();
 
-		//get all resource types for output in drop down
-		$resourceTypeArray = array();
+		// get all resource types for output in drop down
+		$typesArray = array();
 		$resourceTypeObj = new ResourceType();
-		$resourceTypeArray = $resourceTypeObj->allAsArray();
+		$typesArray = $resourceTypeObj->allAsArray();
+
+		// @annelhote : get all types from this resource
+		$resourceTypesLinkObj = new ResourceTypeLink();
+		$resourceTypesArray = $resourceTypesLinkObj->getResourceTypes($resourceID);
 
 
 		//get all currency for output in drop down
@@ -362,22 +366,20 @@
 					</td>
 					</tr>
 
-					<!-- @annelhote : Add resource's type -->
+					<!-- @annelhote : Change resource's type as multivaluated -->
 					<tr>
-					<td style='vertical-align:top;text-align:left;'><label for='resourceTypeID'>Type:&nbsp;&nbsp;<span class='bigDarkRedText'>*</span></label></td>
+					<td style='vertical-align:top;text-align:left;'><label for='resourceTypeID'><?php echo _("Type:");?>&nbsp;&nbsp;<span class='bigDarkRedText'>*</span></label></td>
 					<td>
-					<select name='resourceTypeID' id='resourceTypeID' style='width:100px;' class='changeSelect' >
-					<option value=''></option>
 					<?php
-					foreach ($resourceTypeArray as $resourceType){
-						if (!(trim(strval($resourceType['resourceTypeID'])) != trim(strval($resource->resourceTypeID)))){
-							echo "<option value='" . $resourceType['resourceTypeID'] . "' selected>" . $resourceType['shortName'] . "</option>\n";
-						}else{
-							echo "<option value='" . $resourceType['resourceTypeID'] . "'>" . $resourceType['shortName'] . "</option>\n";
+					foreach ($typesArray as $resourceType) {
+						if(in_array($resourceType['shortName'], $resourceTypesArray)) {
+							echo "<input type='checkbox' name='types' value='" . $resourceType['resourceTypeID'] . "' checked /> " . $resourceType['shortName'] . "<br/>";
+						} else {
+							echo "<input type='checkbox' name='types' value='" . $resourceType['resourceTypeID'] . "' /> " . $resourceType['shortName'] . "<br/>";
 						}
 					}
 					?>
-					</select>
+					<span id='span_error_resourceTypeID' class='smallDarkRedText'></span>
 					</td>
 					</tr>
 

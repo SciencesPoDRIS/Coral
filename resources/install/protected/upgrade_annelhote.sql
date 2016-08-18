@@ -110,3 +110,16 @@ ALTER TABLE `Resource` ADD COLUMN `descriptionText_fr` text NULL DEFAULT NULL AF
 
 
 ALTER TABLE `ResourceNote` ADD COLUMN `noteTextFr` TEXT NULL DEFAULT NULL AFTER `noteText`;
+
+
+-- @annelhote : Add a table for resource's types
+
+UPDATE `Resource` SET `resourceTypeID` = NULL;
+
+DROP TABLE IF EXISTS `ResourceTypeLink`;
+CREATE TABLE  `ResourceTypeLink` (
+  `resourceTypeLinkId` int(11) NOT NULL auto_increment,
+  `resourceId` int(11) NOT NULL,
+  `resourceTypeId` int(11) NOT NULL,
+  PRIMARY KEY  USING BTREE (`resourceTypeLinkId`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

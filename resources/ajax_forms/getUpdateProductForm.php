@@ -14,10 +14,14 @@
 		$resourceFormatObj = new ResourceFormat();
 		$resourceFormatArray = $resourceFormatObj->sortedArray();
 
-		//get all resource types for output in drop down
-		$resourceTypeArray = array();
+		// get all resource types for output in drop down
+		$typesArray = array();
 		$resourceTypeObj = new ResourceType();
-		$resourceTypeArray = $resourceTypeObj->allAsArray();
+		$typesArray = $resourceTypeObj->allAsArray();
+
+		// @annelhote : get all types from this resource
+		$resourceTypesLinkObj = new ResourceTypeLink();
+		$resourceTypesArray = $resourceTypesLinkObj->getResourceTypes($resourceID);
 
 		// @annelhote : get all status for output in drop down
 		$resourceStatusArray = array();
@@ -304,22 +308,39 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 					</td>
 					</tr>
 
-
+					<!--
 					<tr>
 					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='resourceTypeID'>Type:</label></td>
 					<td>
 					<select name='resourceTypeID' id='resourceTypeID' style='width:100px;' class='changeSelect' >
 					<option value=''></option>
 					<?php
-					foreach ($resourceTypeArray as $resourceType){
-						if (!(trim(strval($resourceType['resourceTypeID'])) != trim(strval($resource->resourceTypeID)))){
-							echo "<option value='" . $resourceType['resourceTypeID'] . "' selected>" . $resourceType['shortName'] . "</option>\n";
-						}else{
-							echo "<option value='" . $resourceType['resourceTypeID'] . "'>" . $resourceType['shortName'] . "</option>\n";
+					// foreach ($resourceTypeArray as $resourceType){
+					// 	if (!(trim(strval($resourceType['resourceTypeID'])) != trim(strval($resource->resourceTypeID)))){
+					// 		echo "<option value='" . $resourceType['resourceTypeID'] . "' selected>" . $resourceType['shortName'] . "</option>\n";
+					// 	}else{
+					// 		echo "<option value='" . $resourceType['resourceTypeID'] . "'>" . $resourceType['shortName'] . "</option>\n";
+					// 	}
+					// }
+					?>
+					</select>
+					</td>
+					</tr>
+					-->
+
+					<!-- @annelhote : Change resource's type as multivaluated -->
+					<tr>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='resourceTypeID'><?php echo _("Type:");?></label></td>
+					<td>
+					<?php
+					foreach ($typesArray as $resourceType) {
+						if(in_array($resourceType['shortName'], $resourceTypesArray)) {
+							echo "<input type='checkbox' name='types' value='" . $resourceType['resourceTypeID'] . "' checked /> " . $resourceType['shortName'] . "<br/>";
+						} else {
+							echo "<input type='checkbox' name='types' value='" . $resourceType['resourceTypeID'] . "' /> " . $resourceType['shortName'] . "<br/>";
 						}
 					}
 					?>
-					</select>
 					</td>
 					</tr>
 

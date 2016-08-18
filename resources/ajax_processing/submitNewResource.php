@@ -22,7 +22,7 @@
 
 
 
-		$resource->resourceTypeID 		= $_POST['resourceTypeID'];
+		// $resource->resourceTypeID 		= $_POST['resourceTypeID'];
 		$resource->resourceFormatID 	= $_POST['resourceFormatID'];
 		$resource->acquisitionTypeID 	= $_POST['acquisitionTypeID'];
 
@@ -190,6 +190,22 @@
 					$alias->aliasTypeID = $value;
 					$alias->shortName = $aliasNameArray[$key];
 					$alias->save();
+				}
+			}
+
+			// @annelhote : Update resource's types
+			$resource->removeResourceTypes();
+			if ($_POST['resourceTypes']) {
+				$resourceTypesArray = json_decode($_POST['resourceTypes']);
+				foreach($resourceTypesArray as $typeId) {
+					$resourceTypeLink = new ResourceTypeLink();
+					$resourceTypeLink->resourceId = $resourceID;
+					$resourceTypeLink->resourceTypeId = $typeId;
+					try {
+						$resourceTypeLink->save();
+					} catch (Exception $e) {
+						echo $e->getMessage();
+					}
 				}
 			}
 

@@ -10,7 +10,6 @@
 		$resource->titleText 			= $_POST['titleText'];
 		$resource->descriptionText 		= $_POST['descriptionText'];
 		$resource->resourceFormatID 	= $_POST['resourceFormatID'];
-		$resource->resourceTypeID 		= $_POST['resourceTypeID'];
 		$resource->resourceURL 			= $_POST['resourceURL'];
 		$resource->resourceAltURL 		= $_POST['resourceAltURL'];
 		// @annelhote : Update resource's status
@@ -84,6 +83,22 @@
 				$resourceLanguage->languageId = $languageId;
 				try {
 					$resourceLanguage->save();
+				} catch (Exception $e) {
+					echo $e->getMessage();
+				}
+			}
+		}
+
+		// @annelhote : Update resource's types
+		$resource->removeResourceTypes();
+		if ($_POST['resourceTypes']) {
+			$resourceTypesArray = json_decode($_POST['resourceTypes']);
+			foreach($resourceTypesArray as $typeId) {
+				$resourceTypeLink = new ResourceTypeLink();
+				$resourceTypeLink->resourceId = $resourceID;
+				$resourceTypeLink->resourceTypeId = $typeId;
+				try {
+					$resourceTypeLink->save();
 				} catch (Exception $e) {
 					echo $e->getMessage();
 				}

@@ -473,7 +473,9 @@ function validateNewResource() {
     //     myReturn = 1;
     // }
 
-    if (typeID == '' || typeID == null) {
+    // @annelhote : set type as multivaluated
+    // if (typeID == '' || typeID == null) {
+    if($('input[name="types"]:checked').length == 0) {
         $('#span_error_resourceTypeID').html(_("The resource type is required."));
         myReturn = 1;
     }
@@ -584,6 +586,12 @@ function submitResource(status) {
         aliasNameList += $(this).val() + ":::";
     });
 
+    // @annelhote : Add resource's types
+    var resourceTypes = Array();
+    $('input[name="types"]:checked').each(function() {
+        resourceTypes.push($(this).val());
+    });
+
     // @annelhote : Add resource's status
     // @annelhote : Add resource's languages
     // @annelhote : Add resource's logo
@@ -601,7 +609,7 @@ function submitResource(status) {
             url: "ajax_processing.php?action=submitNewResource",
             cache: false,
             // data: { resourceID: $("#editResourceID").val(), resourceTypeID: $("input:radio[name='resourceTypeID']:checked").val(), resourceFormatID: $("input:radio[name='resourceFormatID']:checked").val(), acquisitionTypeID: $("input:radio[name='acquisitionTypeID']:checked").val(), titleText: $("#titleText").val(), descriptionText: $("#descriptionText").val(), providerText: $("#providerText").val(), organizationID: $("#organizationID").val(), resourceURL: $("#resourceURL").val(), resourceAltURL: $("#resourceAltURL").val(), noteText: $("#noteText").val(), orderTypes: orderTypeList, fundNames: fundNameList, paymentAmounts: paymentAmountList, currencyCodes: currencyCodeList, resourceStatus: status, resourceStatusID: $("#resourceStatusID").val(), resourceLogo: $('#resourceLogoFileName').val(), accessibility: accessibility, published: published, publicationComment: $("#publicationComment").val(), publicationDate: d.asString('yyyy-mm-dd'), tutoResource : JSON.stringify(arrayTutos), titleText_fr: $("#titleText_fr").val(), descriptionText_fr: $("#descriptionText_fr").val(), resourceLanguages: JSON.stringify(resourceLanguages) },
-            data: { resourceID: $("#editResourceID").val(), resourceTypeID: $("#resourceTypeID").val(), resourceFormatID: $("input:radio[name='resourceFormatID']:checked").val(), acquisitionTypeID: $("input:radio[name='acquisitionTypeID']:checked").val(), titleText: $("#titleText").val(), descriptionText: $("#descriptionText").val(), providerText: $("#providerText").val(), organizationID: $("#organizationID").val(), resourceURL: $("#resourceURL").val(), resourceAltURL: $("#resourceAltURL").val(), noteText: $("#noteText").val(), orderTypes: orderTypeList, fundNames: fundNameList, paymentAmounts: paymentAmountList, currencyCodes: currencyCodeList, resourceStatus: status, resourceStatusID: $("#resourceStatusID").val(), resourceLogo: $('#resourceLogoFileName').val(), accessibility: accessibility, published: published, publicationComment: $("#publicationComment").val(), publicationDate: d.asString('yyyy-mm-dd'), tutoResource : JSON.stringify(arrayTutos), titleText_fr: $("#titleText_fr").val(), descriptionText_fr: $("#descriptionText_fr").val(), resourceLanguages: JSON.stringify(resourceLanguages), archiveInd: getCheckboxValue('archiveInd'), isbnOrISSN: JSON.stringify(arrayisbn), parentResourcesID: JSON.stringify(arrayparents), organizationRoles: organizationRoleList, organizations: organizationList, aliasTypes: aliasTypeList, aliasNames: aliasNameList },
+            data: { resourceID: $("#editResourceID").val(), resourceFormatID: $("input:radio[name='resourceFormatID']:checked").val(), acquisitionTypeID: $("input:radio[name='acquisitionTypeID']:checked").val(), titleText: $("#titleText").val(), descriptionText: $("#descriptionText").val(), providerText: $("#providerText").val(), organizationID: $("#organizationID").val(), resourceURL: $("#resourceURL").val(), resourceAltURL: $("#resourceAltURL").val(), noteText: $("#noteText").val(), orderTypes: orderTypeList, fundNames: fundNameList, paymentAmounts: paymentAmountList, currencyCodes: currencyCodeList, resourceStatus: status, resourceStatusID: $("#resourceStatusID").val(), resourceLogo: $('#resourceLogoFileName').val(), accessibility: accessibility, published: published, publicationComment: $("#publicationComment").val(), publicationDate: d.asString('yyyy-mm-dd'), tutoResource : JSON.stringify(arrayTutos), titleText_fr: $("#titleText_fr").val(), descriptionText_fr: $("#descriptionText_fr").val(), resourceLanguages: JSON.stringify(resourceLanguages), archiveInd: getCheckboxValue('archiveInd'), isbnOrISSN: JSON.stringify(arrayisbn), parentResourcesID: JSON.stringify(arrayparents), organizationRoles: organizationRoleList, organizations: organizationList, aliasTypes: aliasTypeList, aliasNames: aliasNameList, resourceTypes: JSON.stringify(resourceTypes) },
             success: function(resourceID) {
                 //go to the new resource page if this was submitted
                 if (status == 'progress') {

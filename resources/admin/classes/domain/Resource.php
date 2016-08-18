@@ -2484,6 +2484,12 @@ class Resource extends DatabaseObject {
 		$result = $this->db->processQuery($query);
 	}
 
+	// @annelhote : Remove all types from a resource
+	public function removeResourceTypes() {
+		$query = "DELETE FROM ResourceTypeLink WHERE resourceId = '" . $this->resourceID . "'";
+		$result = $this->db->processQuery($query);
+	}
+
 }
 
 ?>
