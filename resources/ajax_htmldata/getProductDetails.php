@@ -65,6 +65,14 @@
 			$resourceLanguageObj = new ResourceLanguage();
 			$resourceLanguageArray = $resourceLanguageObj->getResourceLanguages($resourceID);
 
+			// get all resource types
+			$resourceTypeObj = new ResourceType();
+			$typesArray = $resourceTypeObj->allAsArray();
+
+			// @annelhote : get all types from this resource
+			$resourceTypesLinkObj = new ResourceTypeLink();
+			$resourceTypesArray = $resourceTypesLinkObj->getResourceTypes($resourceID);
+
 			// @annelhote : Get all tutos
 			$sanitizedInstance = array();
 			$instance = new ResourceTuto();
@@ -318,9 +326,9 @@
 			}
 
 			// @annelhote : Display resource's language
-			if ($resourceLanguageArray && count($resourceLanguageArray) > 0){ ?>
+			if ($resourceLanguageArray){ ?>
 				<tr>
-				<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='resourceLanguageID'><?php echo _("Language:");?></label></td>
+				<td style='vertical-align:top;text-align:left;'><label for='resourceLanguageID'><?php echo _("Language:");?></label></td>
 				<td>
 				<?php
 				foreach ($languages as $language) {
@@ -328,6 +336,25 @@
 						echo "<input type='checkbox' name='languages' value='" . $language['languageId'] . "' checked disabled /> " . $lang_name->getNameLang($language['shortName']) . "<br/>";
 					} else {
 						echo "<input type='checkbox' name='languages' value='" . $language['languageId'] . "' disabled /> " . $lang_name->getNameLang($language['shortName']) . "<br/>";
+					}
+				}
+				?>
+				</td>
+				</tr>
+			<?php
+			}
+
+			// @annelhote : Display resource's type
+			if ($resourceTypesArray){ ?>
+				<tr>
+				<td style='vertical-align:top;text-align:left;'><label for='resourceLanguageID'><?php echo _("Type:");?></label></td>
+				<td>
+				<?php
+				foreach ($typesArray as $type) {
+					if(in_array($type['shortName'], $resourceTypesArray)) {
+						echo "<input type='checkbox' name='types' value='" . $type['resourceTypeID'] . "' checked disabled /> " . $type['shortName'] . "<br/>";
+					} else {
+						echo "<input type='checkbox' name='types' value='" . $type['resourceTypeID'] . "' disabled /> " . $type['shortName'] . "<br/>";
 					}
 				}
 				?>
