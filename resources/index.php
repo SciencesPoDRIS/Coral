@@ -100,25 +100,29 @@ $_SESSION['ref_script']=$currentPage;
 	</tr>
 
 
-
+	<!-- @annelhote : hide the ISSN search field on resource welcome page -->
+	<!--
 	<tr>
 	<td class='searchRow'><label for='searchResourceISBNOrISSN'><b>ISBN/ISSN</b></label>
 	<br />
-	<?php echo Html::text_search_field_tag('resourceISBNOrISSN', $search['resourceISBNOrISSN']); ?>
+	<?php // echo Html::text_search_field_tag('resourceISBNOrISSN', $search['resourceISBNOrISSN']); ?>
 	<br />
-	<div id='div_searchISBNOrISSN' style='<?php if (!$search['resourceISBNOrISSN']) echo "display:none;"; ?>margin-left:123px;'><input type='button' name='btn_searchResourceISBNOrISSN' value='<?php echo _("go!");?>' class='searchButton' /></div>
+	<div id='div_searchISBNOrISSN' style='<?php // if (!$search['resourceISBNOrISSN']) echo "display:none;"; ?>margin-left:123px;'><input type='button' name='btn_searchResourceISBNOrISSN' value='<?php // echo _("go!");?>' class='searchButton' /></div>
 	</td>
 	</tr>
+	-->
 
 
-
+	<!-- @annelhote : hide the funds search field on resource welcome page -->
+	<!--
 	<tr>
-	<td class='searchRow'><label for='searchFund'><b><?php echo _("Fund");?></b></label>
+	<td class='searchRow'><label for='searchFund'><b><?php // echo _("Fund");?></b></label>
 	<br />
-	<?php echo Html::text_search_field_tag('fund', $search['fund']); ?><br />
-	<div id='div_searchFund' style='<?php if (!$search['fund']) echo "display:none;"; ?>margin-left:123px;'><input type='button' name='btn_searchFund' value='<?php echo _("go!");?>' class='searchButton' /></div>
+	<?php // echo Html::text_search_field_tag('fund', $search['fund']); ?><br />
+	<div id='div_searchFund' style='<?php // if (!$search['fund']) echo "display:none;"; ?>margin-left:123px;'><input type='button' name='btn_searchFund' value='<?php // echo _("go!");?>' class='searchButton' /></div>
 	</td>
 	</tr>
+	-->
 
 
 
@@ -207,29 +211,31 @@ $_SESSION['ref_script']=$currentPage;
 	</tr>
 
 
-
+	<!-- @annelhote : hide the format search field on resource welcome page -->
+	<!--
 	<tr>
-	<td class='searchRow'><label for='searchResourceFormatID'><b><?php echo _("Resource Format");?></b></label>
+	<td class='searchRow'><label for='searchResourceFormatID'><b><?php // echo _("Resource Format");?></b></label>
 	<br />
 	<select name='search[resourceFormatID]' id='searchResourceFormatID' style='width:150px'>
-	<option value=''><?php echo _("All");?></option>
+	<option value=''><?php // echo _("All");?></option>
 	<?php
 
-		$display = array();
-		$resourceFormat = new ResourceFormat();
+		// $display = array();
+		// $resourceFormat = new ResourceFormat();
 
-		foreach($resourceFormat->allAsArray() as $display) {
-			if ($search['resourceFormatID'] == $display['resourceFormatID']){
-				echo "<option value='" . $display['resourceFormatID'] . "' selected>" . $display['shortName'] . "</option>";
-			}else{
-				echo "<option value='" . $display['resourceFormatID'] . "'>" . $display['shortName'] . "</option>";
-			}
-		}
+		// foreach($resourceFormat->allAsArray() as $display) {
+		// 	if ($search['resourceFormatID'] == $display['resourceFormatID']){
+		// 		echo "<option value='" . $display['resourceFormatID'] . "' selected>" . $display['shortName'] . "</option>";
+		// 	}else{
+		// 		echo "<option value='" . $display['resourceFormatID'] . "'>" . $display['shortName'] . "</option>";
+		// 	}
+		// }
 
 	?>
 	</select>
 	</td>
 	</tr>
+	-->
 
 
 	<tr>
@@ -304,36 +310,40 @@ $_SESSION['ref_script']=$currentPage;
 	</td>
 	</tr>
 
+
+	<!-- @annelhote : hide the detailed subject search field on resource welcome page -->
+	<!--
 	<tr>
-	<td class='searchRow'><label for='searchDetailedSubjectID'><b><?php echo _("Detailed Subject");?></b></label>
+	<td class='searchRow'><label for='searchDetailedSubjectID'><b><?php // echo _("Detailed Subject");?></b></label>
 	<br />
 	<select name='search[detailedSubjectID]' id='searchDetailedSubjectID' style='width:150px'>
-	<option value=''><?php echo _("All");?></option>
+	<option value=''><?php // echo _("All");?></option>
 
 	<?php
 
-		if ($search['detailedSubjectID'] == "none"){
-			echo "<option value='none' selected>"._("(none)")."</option>";
-		}else{
-			echo "<option value='none'>"._("(none)")."</option>";
-		}
+		// if ($search['detailedSubjectID'] == "none"){
+		// 	echo "<option value='none' selected>"._("(none)")."</option>";
+		// }else{
+		// 	echo "<option value='none'>"._("(none)")."</option>";
+		// }
 
 
-		$display = array();
-		$detailedSubject = new DetailedSubject();
+		// $display = array();
+		// $detailedSubject = new DetailedSubject();
 
-		foreach($detailedSubject->allAsArray() as $display) {
-			if ($search['detailedSubjectID'] == $display['detailedSubjectID']){
-				echo "<option value='" . $display['detailedSubjectID'] . "' selected>" . $display['shortName'] . "</option>";
-			}else{
-				echo "<option value='" . $display['detailedSubjectID'] . "'>" . $display['shortName'] . "</option>";
-			}
-		}
+		// foreach($detailedSubject->allAsArray() as $display) {
+		// 	if ($search['detailedSubjectID'] == $display['detailedSubjectID']){
+		// 		echo "<option value='" . $display['detailedSubjectID'] . "' selected>" . $display['shortName'] . "</option>";
+		// 	}else{
+		// 		echo "<option value='" . $display['detailedSubjectID'] . "'>" . $display['shortName'] . "</option>";
+		// 	}
+		// }
 
 	?>
 	</select>
 	</td>
 	</tr>
+	-->
 
 	</table>
 
@@ -522,56 +532,67 @@ $_SESSION['ref_script']=$currentPage;
 	</select>
 	</td>
 	</tr>
-	
+
+
+
+	<!-- @annelhote : hide the cataloging status search field on resource welcome page -->
+	<!--
 	<tr>
-	<td class='searchRow'><label for='searchCatalogingStatusID'><b><?php echo _("Cataloging Status");?></b></label>
+	<td class='searchRow'><label for='searchCatalogingStatusID'><b><?php // echo _("Cataloging Status");?></b></label>
 	<br />
 	<select name='search[catalogingStatusID]' id='searchCatalogingStatusID' style='width:150px'>
-	<option value=''><?php echo _("All");?></option>
+	<option value=''><?php // echo _("All");?></option>
 	<?php
-	  if ($search['catalogingStatusID'] == "none") {
-			echo "<option value='none' selected>"._("(none)")."</option>";
-		}else{
-			echo "<option value='none'>"._("(none)")."</option>";
-		}
+	 //  if ($search['catalogingStatusID'] == "none") {
+		// 	echo "<option value='none' selected>"._("(none)")."</option>";
+		// }else{
+		// 	echo "<option value='none'>"._("(none)")."</option>";
+		// }
 
-		$catalogingStatus = new CatalogingStatus();
+		// $catalogingStatus = new CatalogingStatus();
 		
-		foreach($catalogingStatus->allAsArray() as $status) {
-			if ($search['catalogingStatusID'] == $status['catalogingStatusID']) {
-				echo "<option value='" . $status['catalogingStatusID'] . "' selected>" . $status['shortName'] . "</option>";
-			}else{
-				echo "<option value='" . $status['catalogingStatusID'] . "'>" . $status['shortName'] . "</option>";
-			}
-		}
+		// foreach($catalogingStatus->allAsArray() as $status) {
+		// 	if ($search['catalogingStatusID'] == $status['catalogingStatusID']) {
+		// 		echo "<option value='" . $status['catalogingStatusID'] . "' selected>" . $status['shortName'] . "</option>";
+		// 	}else{
+		// 		echo "<option value='" . $status['catalogingStatusID'] . "'>" . $status['shortName'] . "</option>";
+		// 	}
+		// }
 
 	?>
 	</select>
 	</td>
 	</tr>
-  
-  <tr>
-	<td class='searchRow'><label for='searchStepName'><b><?php echo _("Routing Step");?></b></label>
-	<br />
-	<select name='search[stepName]' id='searchStepName' style='width:150px'>
-	<option value=''><?php echo _("All");?></option>
-	<?php
-	  $step = new Step();
-    $stepNames = $step->allStepNames();
-    
-		foreach($stepNames as $stepName) {
-		  if ($search['stepName'] == $stepName) {
-		    $stepSelected = " selected";
-		  } else {
-		    $stepSelected = false;
-		  }
-		  echo "<option value=\"" . htmlspecialchars($stepName) . "\" $stepSelected>" . htmlspecialchars($stepName) . "</option>";
-		}
+	-->
 
-	?>
-	</select>
-	</td>
+
+
+	<!-- @annelhote : hide the routing step search field on resource welcome page -->
+	<!--
+	<tr>
+		<td class='searchRow'><label for='searchStepName'><b><?php // echo _("Routing Step");?></b></label>
+		<br />
+		<select name='search[stepName]' id='searchStepName' style='width:150px'>
+		<option value=''><?php // echo _("All");?></option>
+		<?php
+		 // 	$step = new Step();
+			// $stepNames = $step->allStepNames();
+			// foreach($stepNames as $stepName) {
+			// 	if ($search['stepName'] == $stepName) {
+			// 		$stepSelected = " selected";
+			// 	} else {
+			// 		$stepSelected = false;
+			// 	}
+			// 	echo "<option value=\"" . htmlspecialchars($stepName) . "\" $stepSelected>" . htmlspecialchars($stepName) . "</option>";
+			// }
+		?>
+		</select>
+		</td>
 	</tr>
+	-->
+
+
+
   <tr>
     <td class='searchRow'><label for='searchParents'><b>Relationship</b></label>
     <select name='search[parent]' id='searchParents' style='width:150px'>
