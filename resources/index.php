@@ -149,34 +149,54 @@ $_SESSION['ref_script']=$currentPage;
 	</td>
 	</tr>
 
+
+	<!-- @annelhote : Comment to checknge the default Status search field. Replace it by the new resource's status field. -->
+	<!--
 	<tr>
-	<td class='searchRow'><label for='searchStatusID'><b><?php echo _("Status");?></b></label>
+	<td class='searchRow'><label for='searchStatusID'><b><?php // echo _("Status");?></b></label>
 	<br />
 	<select name='search[statusID]' id='searchStatusID' style='width:150px'>
-	<option value=''><?php echo _("All");?></option>
+	<option value=''><?php // echo _("All");?></option>
 	<?php
 
-		$display = array();
-		$status = new Status();
+		// $display = array();
+		// $status = new Status();
 
-		foreach($status->allAsArray() as $display) {
-			//exclude saved status
-			if (strtoupper($display['shortName']) != 'SAVED'){
-				if ($search['statusID'] == $display['statusID']){
-					echo "<option value='" . $display['statusID'] . "' selected>" . $display['shortName'] . "</option>";
-				}else{
-					echo "<option value='" . $display['statusID'] . "'>" . $display['shortName'] . "</option>";
-				}
-			}
-		}
+		// foreach($status->allAsArray() as $display) {
+		// 	//exclude saved status
+		// 	if (strtoupper($display['shortName']) != 'SAVED'){
+		// 		if ($search['statusID'] == $display['statusID']){
+		// 			echo "<option value='" . $display['statusID'] . "' selected>" . $display['shortName'] . "</option>";
+		// 		}else{
+		// 			echo "<option value='" . $display['statusID'] . "'>" . $display['shortName'] . "</option>";
+		// 		}
+		// 	}
+		// }
 
 	?>
 	</select>
 	</td>
 	</tr>
+	-->
 
 
-
+	<!-- @annelhote : Add specific resource's status search field -->
+	<tr>
+	<td class='searchRow'><label for='searchResourceStatusID'><b><?php echo _("Status");?></b></label>
+	<br />
+	<select name='search[resourceStatusID]' id='searchResourceStatusID' style='width:150px'>
+	<option value=''><?php echo _("All");?></option>
+	<?php
+		$display = array();
+		$resourceStatusArray = array();
+		$resourceStatusObj = new ResourceStatus();
+		foreach($resourceStatusObj->sortedArray() as $display) {
+			echo "<option value='" . $display['resourceStatusID'] . "'>" . _($display['shortName']) . "</option>";
+		}
+	?>
+	</select>
+	</td>
+	</tr>
 
 
 

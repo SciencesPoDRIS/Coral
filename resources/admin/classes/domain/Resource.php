@@ -1100,6 +1100,13 @@ class Resource extends DatabaseObject {
     	$searchDisplay[] = "Status: " . $status->shortName;
 	  }
 
+		// @annelhote : Add filter on specific resource's status
+		if ($search['resourceStatusID']) {
+			$whereAdd[] = "R.resourceStatusID = '" . $resource->db->escapeString($search['resourceStatusID']) . "'";
+			$resourceStatus = new ResourceStatus(new NamedArguments(array('primaryKey' => $search['resourceStatusID'])));
+			$searchDisplay[] = "Resource Status: " . $resourceStatus->shortName;
+		}
+
 		if ($search['creatorLoginID']) {
 		  $whereAdd[] = "R.createLoginID = '" . $resource->db->escapeString($search['creatorLoginID']) . "'";
 
