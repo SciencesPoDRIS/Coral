@@ -8,6 +8,10 @@
 	$orderBy = $queryDetails["order"];
 	$recordsPerPage = $queryDetails["perPage"];
 
+	// @annelhote : get all resource types
+	$resourceTypeObj = new ResourceType();
+	$typesArray = $resourceTypeObj->allAsArray();
+
 	// @annelhote : set up the max level to the sky
 	$recordsPerPage = 99999999;
 
@@ -157,8 +161,15 @@
 				// @annelhote : add resource's publication status
 				echo "<td $classAdd>" . ($resource['published'] ? _('Yes') : _('No')) . "</td>";
 
+				// @annelhote : get all types from this resource
+				$resourceTypesLinkObj = new ResourceTypeLink();
+				$resourceTypesArray = $resourceTypesLinkObj->getResourceTypes($resource['resourceID']);
 				// @annelhote : add resource's type
-				echo "<td $classAdd>" . $resource['shortName'] . "</td>";
+				$resourceTypesString = '';
+				foreach ($resourceTypesArray as $key => $value) {
+					$resourceTypesString .= ($resourceTypesString == '') ? $value : ', ' . $value;
+				}
+				echo "<td $classAdd>" . $resourceTypesString . "</td>";
 
 				// @annelhote : add modal link to directly update a resource
 				if ($user->canEdit()) {
@@ -245,7 +256,7 @@
 					// }
 					?>
 				</select>
-				<span class='smallText'><?php echo _("records per page");?></span>
+				<span class='smallText'><?php // echo _("records per page");?></span>
 				</td>
 			-->
 			</tr>
