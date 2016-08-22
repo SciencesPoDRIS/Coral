@@ -119,7 +119,7 @@
 			<table class='dataTable' style='width:727px'>
 			<tr>
 			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("ID");?></td><td style='width:10px;'><a href='javascript:setOrder("R.resourceID + 0","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;'><a href='javascript:setOrder("R.resourceID + 0","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
-			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("Name");?></td><td style='width:10px;'><a href='javascript:setOrder("R.titleText","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;'><a href='javascript:setOrder("R.titleText","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
+			<th style='min-width: 150px;'><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("Name");?></td><td style='width:10px;'><a href='javascript:setOrder("R.titleText","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;'><a href='javascript:setOrder("R.titleText","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
 			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("Creator");?></td><td style='width:10px;'><a href='javascript:setOrder("CU.loginID","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;'><a href='javascript:setOrder("CU.loginID","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
 			<!-- @annelhote : Hide column that displays the creation date -->
 			<!-- <th><table class='noBorderTable' style='width:100%'><tr><td><?php // echo _("Date Created");?></td><td style='width:10px;vertical-align:top;'><a href='javascript:setOrder("R.createDate","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;vertical-align:top;'><a href='javascript:setOrder("R.createDate","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th> -->
@@ -132,9 +132,9 @@
 			<!-- @annelhote : Add new column to display the resource's type -->
 			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("Resource Type");?></td><td style='width:10px;'><a href='javascript:setOrder("RT.shortName","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;'><a href='javascript:setOrder("RT.shortName","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
 			<!-- @annelhote : Add new column to directly edit a resource -->
-			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("Edit ");?></td></tr></table></th>
+			<th style='max-width: 25px; overflow-x: hidden;'><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("Edit ");?></td></tr></table></th>
 			<!-- @annelhote : Add new column to directly delete a resource -->
-			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("remove resource")?></td></tr></table></th>
+			<th style='max-width: 25px; overflow-x: hidden;'><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("remove resource")?></td></tr></table></th>
 			</tr>
 
 			<?php
@@ -186,14 +186,14 @@
 
 				// @annelhote : add modal link to directly update a resource
 				if ($user->canEdit()) {
-					echo "<td $classAdd><a href='ajax_forms.php?action=getUpdateProductForm&height=498&width=730&resourceID=" . $resource['resourceID'] . "&modal=true' class='thickbox'><img src='images/edit.gif' alt='" . _("edit") . "' title='" . _("edit resource") . "'></a></td>";
+					echo "<td $classAdd style='text-align: center;'><a href='ajax_forms.php?action=getUpdateProductForm&height=498&width=730&resourceID=" . $resource['resourceID'] . "&modal=true' class='thickbox'><img src='images/edit.gif' alt='" . _("edit") . "' title='" . _("edit resource") . "'></a></td>";
 				} else {
 					echo "<td $classAdd></td>";
 				}
 
 				// @annelhote : add modal link to directly delete a resource
 				if ($user->isAdmin) {
-					echo "<td $classAdd><a href='javascript:void(0);' class='removeResource' id='" . $resource['resourceID'] . "'><img src='images/cross.gif' alt='" . _("remove resource") . "' title='" . _("remove resource") . "'></a></td>";
+					echo "<td $classAdd style='text-align: center;'><a href='javascript:void(0);' class='removeResource' id='" . $resource['resourceID'] . "'><img src='images/cross.gif' alt='" . _("remove resource") . "' title='" . _("remove resource") . "'></a></td>";
 				} else {
 					echo "<td $classAdd></td>";
 				}

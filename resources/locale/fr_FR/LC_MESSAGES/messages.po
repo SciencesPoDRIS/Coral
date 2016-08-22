@@ -1594,7 +1594,7 @@ msgstr "Pas de requête en attente"
 #: ajax_htmldata/getSubmittedQueue.php:14
 #: ajax_htmldata/getSearchResources.php:112
 msgid "ID"
-msgstr "Identifiant"
+msgstr "ID"
 
 #: ajax_htmldata/getAdminWorkflowDisplay.php:10
 msgid "Workflow Setup"
