@@ -121,7 +121,10 @@
 			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("ID");?></td><td style='width:10px;'><a href='javascript:setOrder("R.resourceID + 0","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;'><a href='javascript:setOrder("R.resourceID + 0","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
 			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("Name");?></td><td style='width:10px;'><a href='javascript:setOrder("R.titleText","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;'><a href='javascript:setOrder("R.titleText","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
 			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("Creator");?></td><td style='width:10px;'><a href='javascript:setOrder("CU.loginID","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;'><a href='javascript:setOrder("CU.loginID","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
-			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("Date Created");?></td><td style='width:10px;vertical-align:top;'><a href='javascript:setOrder("R.createDate","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;vertical-align:top;'><a href='javascript:setOrder("R.createDate","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
+			<!-- @annelhote : Hide column that displays the creation date -->
+			<!-- <th><table class='noBorderTable' style='width:100%'><tr><td><?php // echo _("Date Created");?></td><td style='width:10px;vertical-align:top;'><a href='javascript:setOrder("R.createDate","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;vertical-align:top;'><a href='javascript:setOrder("R.createDate","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th> -->
+			<!-- @annelhote : Add new column to display the resource's updated date -->
+			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("Date Updated");?></td><td style='width:10px;vertical-align:top;'><a href='javascript:setOrder("R.updateDate","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;vertical-align:top;'><a href='javascript:setOrder("R.updateDate","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
 			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("Acquisition Type");?></td><td style='width:10px;vertical-align:top;'><a href='javascript:setOrder("acquisitionType","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;vertical-align:top;'><a href='javascript:setOrder("acquisitionType","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
 			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("Status");?></td><td style='width:10px;'><a href='javascript:setOrder("S.shortName","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;'><a href='javascript:setOrder("S.shortName","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
 			<!-- @annelhote : Add new column to display the resource's publication status -->
@@ -144,6 +147,13 @@
 				}else{
 					$classAdd="class='alt'";
 				}
+
+				// @annelhote : if updateDate is null, set it to createDate
+				if(is_null($resource['updateDate'])) {
+					$resource['updateDate'] = $resource['createDate'];
+				}
+
+
 				echo "<tr>";
 				echo "<td $classAdd><a href='resource.php?resourceID=" . $resource['resourceID'] . "'>" . $resource['resourceID'] . "</a></td>";
 				echo "<td $classAdd><a href='resource.php?resourceID=" . $resource['resourceID'] . "'>" . $resource['titleText'] . "</a></td>";
@@ -153,7 +163,10 @@
 				}else{
 					echo "<td $classAdd>" . $resource['createLoginID'] . "</td>";
 				}
-				echo "<td $classAdd>" . format_date($resource['createDate']) . "</td>";
+
+				// @annelhote : Hide the creation date and display the updated date instead
+				// echo "<td $classAdd>" . format_date($resource['createDate']) . "</td>";
+				echo "<td $classAdd>" . format_date($resource['updateDate']) . "</td>";
 
 				echo "<td $classAdd>" . $resource['acquisitionType'] . "</td>";
 				echo "<td $classAdd>" . $resource['status'] . "</td>";
