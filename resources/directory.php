@@ -23,6 +23,7 @@ define('ADMIN_DIR', dirname(__FILE__) . '/admin/');
 define('BASE_DIR', dirname(__FILE__) . '/');
 define('CLASSES_DIR', ADMIN_DIR . 'classes/');
 
+
 // Automatically load undefined classes from subdirectories of |CLASSES_DIR|.
 function __autoload( $className ) {
 	if (file_exists(CLASSES_DIR) && is_readable(CLASSES_DIR) && is_dir(CLASSES_DIR)) {
@@ -109,7 +110,11 @@ function format_date($mysqlDate) {
 
 	//SUGGESTED: "m/d/Y" or "d-m-Y"
 
-	return date("m/d/Y", strtotime($mysqlDate));
+  if(getenv('LC_ALL') == 'fr_FR') {
+    return date("d/m/Y", strtotime($mysqlDate));
+  } else {
+    return date("m/d/Y", strtotime($mysqlDate));
+  }
 
 }
 
