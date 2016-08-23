@@ -279,45 +279,50 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 					</td>
 					</tr>
 
+					<!-- @annelhote : Remove the ISSN field -->
+					<!--
 					<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='isbnOrISSN'><?php echo _("ISSN / ISBN:");?></label></td>
-<td>
-          <span id="newIsbn">
-           <input type='text' class='isbnOrISSN isbnOrISSN_new' name='isbnOrISSN' value = "" style='width:97px;' class='changeInput'  /><span id='span_errors_isbnOrISSN' class='smallDarkRedText'></span>
-           <a href='javascript:void(0);'><img src='images/add.gif' class='addIsbn' alt='<?php echo _("add Isbn");?>' title='<?php echo _("add Isbn");?>'></a><br />
-           <hr /><br />
-           </span>
-           <span id="existingIsbn">
-          <?php
-           $isbnOrIssns = $resource->getIsbnOrIssn();
-           $i = 1;
-           foreach ($isbnOrIssns as $isbnOrIssn) {
-             ?><input type='text' class='isbnOrISSN' name='isbnOrISSN' value = '<?php echo $isbnOrIssn->isbnOrIssn; ?>' style='width:97px;' class='changeInput'  /><br /><?php
-             $i++;
-           }
-          ?>
-          </span>
-          </td>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='isbnOrISSN'><?php // echo _("ISSN / ISBN:");?></label></td>
+					<td>
+					<span id="newIsbn">
+					<input type='text' class='isbnOrISSN isbnOrISSN_new' name='isbnOrISSN' value = "" style='width:97px;' class='changeInput'  /><span id='span_errors_isbnOrISSN' class='smallDarkRedText'></span>
+					<a href='javascript:void(0);'><img src='images/add.gif' class='addIsbn' alt='<?php // echo _("add Isbn");?>' title='<?php // echo _("add Isbn");?>'></a><br />
+					<hr /><br />
+					</span>
+					<span id="existingIsbn">
+					<?php
+						// $isbnOrIssns = $resource->getIsbnOrIssn();
+						// $i = 1;
+						// foreach ($isbnOrIssns as $isbnOrIssn) {
+					?>
+					<input type='text' class='isbnOrISSN' name='isbnOrISSN' value = '<?php // echo $isbnOrIssn->isbnOrIssn; ?>' style='width:97px;' class='changeInput'  /><br />
+					<?php
+						// $i++;
+						// }
+					?>
+					</span>
+					</td>
 					</tr>
+					-->
 
-
-					<tr>
-					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='resourceFormatID'><?php echo _("Format:");?></label></td>
+					<!-- @annelhote : Remove the Format field -->
+					<!-- <tr>
+					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='resourceFormatID'><?php // echo _("Format:");?></label></td>
 					<td>
 					<select name='resourceFormatID' id='resourceFormatID' style='width:100px;' class='changeSelect'>
 					<option value=''></option>
 					<?php
-					foreach ($resourceFormatArray as $resourceFormat){
-						if (!(trim(strval($resourceFormat['resourceFormatID'])) != trim(strval($resource->resourceFormatID)))){
-							echo "<option value='" . $resourceFormat['resourceFormatID'] . "' selected>" . $resourceFormat['shortName'] . "</option>\n";
-						}else{
-							echo "<option value='" . $resourceFormat['resourceFormatID'] . "'>" . $resourceFormat['shortName'] . "</option>\n";
-						}
-					}
+					// foreach ($resourceFormatArray as $resourceFormat){
+					// 	if (!(trim(strval($resourceFormat['resourceFormatID'])) != trim(strval($resource->resourceFormatID)))){
+					// 		echo "<option value='" . $resourceFormat['resourceFormatID'] . "' selected>" . $resourceFormat['shortName'] . "</option>\n";
+					// 	}else{
+					// 		echo "<option value='" . $resourceFormat['resourceFormatID'] . "'>" . $resourceFormat['shortName'] . "</option>\n";
+					// 	}
+					// }
 					?>
 					</select>
 					</td>
-					</tr>
+					</tr> -->
 
 					<!--
 					<tr>
