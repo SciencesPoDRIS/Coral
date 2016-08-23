@@ -51,6 +51,28 @@ function updateResourceSubjectTable(resourceID, generalSubjectID, detailSubjectI
 	
 }
 
+// @annelhote : Create function to add subject in mass
+function addSubjects() {
+	// Remove all the subjects
+	$("#div_updateForm input[name='subject']").each(
+		function() {
+			$.ajax({
+				type:       "GET",
+				url:        "ajax_processing.php",
+				cache:      false,
+				data:       "action=removeResourceSubjectRelationship&generalDetailSubjectID=" + $(this).val() + "&resourceID=" + $(this).attr('resourceID'),
+				success:    function(html) {
+				}
+			});
+		}
+	);
+	// Add only the selected subjects
+	$("#div_updateForm input:checked[name='subject']").each(
+		function() {
+			updateResourceSubjectTable($(this).attr('resourceID'), $(this).val(), $(this).attr('detailSubjectID'));
+		}
+	);
+}
 
 //kill all binds done by jquery live
 function kill(){
