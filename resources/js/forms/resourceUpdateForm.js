@@ -554,7 +554,7 @@ function submitProductForm(){
 
         // @annelhote : Add resource's types
         var resourceTypes = Array();
-        $('input[name="types"]:checked').each(function() {
+        $('#div_resourceForm input[name="types"]:checked').each(function() {
             resourceTypes.push($(this).val());
         });
 
