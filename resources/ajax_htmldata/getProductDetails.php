@@ -345,7 +345,7 @@
 			}
 
 			// @annelhote : Display resource's type
-			if ($resourceTypesArray){ ?>
+			?>
 				<tr>
 				<td style='vertical-align:top;text-align:left;'><label for='resourceLanguageID'><?php echo _("Type:");?></label></td>
 				<td>
@@ -361,7 +361,6 @@
 				</td>
 				</tr>
 			<?php
-			}
 
 			// @annelhote : Display resource's status
 			if ($resource->resourceStatusID){ ?>
