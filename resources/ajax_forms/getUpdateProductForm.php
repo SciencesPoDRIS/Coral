@@ -95,7 +95,7 @@
 		<div id='div_resourceForm'>
 		<form id='resourceForm'>
 
-		<!-- @annelhote : Duplicate the "submit" and "cancel" butons at the top -->
+		<!-- @annelhote : Duplicate the "submit" and "cancel" buttons at the top -->
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
 				<td style='text-align:left'><input type='button' value='<?php echo _("submit");?>' name='submitProductChanges' class='submitProductChanges' id ='submitProductChangesTop'></td>

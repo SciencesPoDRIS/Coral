@@ -13,7 +13,7 @@
 ?>
 		<div id='div_updateForm'>
 
-		<!-- @aanelhote : Duplicate the "add" and "cancel" butons at the top -->
+		<!-- @aanelhote : Duplicate the "add" and "cancel" buttons at the top -->
 		<td style='text-align:right'>
 			<!-- @annelhote : Add a "add" button for the whole list -->
 			<input type='button' value='<?php echo _("add");?>' onclick="addSubjects();">
