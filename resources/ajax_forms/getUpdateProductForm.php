@@ -98,7 +98,7 @@
 		<!-- @annelhote : Duplicate the "submit" and "cancel" butons at the top -->
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='<?php echo _("submit");?>' name='submitProductChanges' id ='submitProductChanges'></td>
+				<td style='text-align:left'><input type='button' value='<?php echo _("submit");?>' name='submitProductChanges' class='submitProductChanges' id ='submitProductChangesTop'></td>
 				<td style='text-align:right'><input type='button' value='<?php echo _("cancel");?>' onclick="kill(); tb_remove();"></td>
 			</tr>
 		</table>
@@ -587,20 +587,24 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 						<td>
 							<table class='noBorder smallPadding' style='width:330px;  margin:15px 20px 0px 20px;'>
 								<tr>
-									<td style='vertical-align:top;text-align:left;font-weight:bold;width:103px;'>
+									<td style='vertical-align:top;text-align:left;font-weight:bold;width:250px;'>
 										<div><?php echo _("Name:");?></div>
 									</td>
-									<td style='vertical-align:top;text-align:left;font-weight:bold;width:160px;'>
+								</tr>
+								<tr>
+									<td style='vertical-align:top;text-align:left;'>
+										<input type='text' value = '' style='width:250px;background:#f5f8fa;' class='changeAutocomplete addTutoName' />
+									</td>
+								</tr>
+								<tr>
+									<td style='vertical-align:top;text-align:left;font-weight:bold;width:250px;'>
 										<div><?php echo _("URL:");?><div>
 									</td>
 									<td>&nbsp;</td>
 								</tr>
 								<tr>
 									<td style='vertical-align:top;text-align:left;'>
-										<input type='text' value = '' style='width:160px;background:#f5f8fa;' class='changeAutocomplete addTutoName' />
-									</td>
-									<td style='vertical-align:top;text-align:left;'>
-										<input type='text' value = '' style='width:160px;background:#f5f8fa;' class='changeAutocomplete addTutoUrl' />
+										<input type='text' value = '' style='width:250px;background:#f5f8fa;' class='changeAutocomplete addTutoUrl' />
 									</td>
 									<td style='vertical-align:top;text-align:left;width:40px;'>
 										<a href='#'><img src='images/add.gif' class='addTuto' alt='<?php echo _("add tuto");?>' title='<?php echo _("add tuto");?>' /></a>
@@ -618,16 +622,14 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 									</td>
 								</tr>
 								<tr class="tutoToFill" style="display: none;">
-									<td>
-										<input type="text" style="width:160px;" value="" class="addTutoNameToFill" disabled />
-									</td>
-									<td>
-										<input type="text" style="width:160px;" value="" class="addTutoUrlToFill" disabled />
-									</td>
-									<td>
-										<a href='#'>
-											<img src='images/cross.gif' alt='<?php echo _("remove ");?>' title='<?php echo _("remove ");?>' class='removeTuto' style="vertical-align: bottom;" />
-										</a>
+									<td colspan="3">
+										<div>
+											<input type="text" style="width:250px;" value="" class="addTutoNameToFill" disabled />
+											<input type="text" style="width:250px;" value="" class="addTutoUrlToFill" disabled />
+											<a href='#'>
+												<img src='images/cross.gif' alt='<?php echo _("remove ");?>' title='<?php echo _("remove ");?>' class='removeTuto' style="vertical-align: bottom;" />
+											</a>
+										</div>
 									</td>
 								</tr>
 								<?php
@@ -635,16 +637,14 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 										foreach($tutosArray as $tuto) {
 								?>
 									<tr class="tutoFilled">
-										<td>
-											<input type="text" style="width:160px;" value="<?php echo $tuto['name']; ?>" class="addTutoNameToFill" disabled />
-										</td>
-										<td>
-											<input type="text" style="width:160px;" value="<?php echo $tuto['url']; ?>" class="addTutoUrlToFill" disabled />
-										</td>
-										<td>
-											<a href='#'>
-												<img src='images/cross.gif' alt='<?php echo _("remove "); ?>' title='<?php echo _("remove "); ?>' class='removeTuto' style="vertical-align: bottom;" />
-											</a>
+										<td colspan="3">
+											<div>
+												<input type="text" style="width:250px;" value="<?php echo $tuto['name']; ?>" class="addTutoNameToFill" disabled />
+												<input type="text" style="width:250px;" value="<?php echo $tuto['url']; ?>" class="addTutoUrlToFill" disabled />
+												<a href='#'>
+													<img src='images/cross.gif' alt='<?php echo _("remove "); ?>' title='<?php echo _("remove "); ?>' class='removeTuto' style="vertical-align: bottom;" />
+												</a>
+											</div>
 										</td>
 									</tr>
 								<?php
@@ -664,7 +664,7 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 
 		<table class='noBorderTable' style='width:125px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='<?php echo _("submit");?>' name='submitProductChanges' id ='submitProductChanges'></td>
+				<td style='text-align:left'><input type='button' value='<?php echo _("submit");?>' name='submitProductChanges' class='submitProductChanges' id ='submitProductChangesBottom'></td>
 				<td style='text-align:right'><input type='button' value='<?php echo _("cancel");?>' onclick="kill(); tb_remove();"></td>
 			</tr>
 		</table>

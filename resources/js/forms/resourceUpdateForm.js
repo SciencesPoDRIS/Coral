@@ -21,7 +21,7 @@ $(function(){
 
     //bind all of the inputs
 
-    $("#submitProductChanges").click(function () {
+    $(".submitProductChanges").click(function () {
         submitProductForm();
     });
 
@@ -567,7 +567,7 @@ function submitProductForm(){
         // @annelhote : Add resource's tutos
         // @annelhote : Add title translation in french
         // @annelhote : Add description translation in french
-        $('#submitProductChanges').attr("disabled", "disabled");
+        $('.submitProductChanges').attr("disabled", "disabled");
         $.ajax({
             type:       "POST",
             url:        "ajax_processing.php?action=submitProductUpdate",
@@ -576,7 +576,7 @@ function submitProductForm(){
             success:    function(html) {
                 if (html){
                     $("#span_errors").html(html);
-                    $("#submitProductChanges").removeAttr("disabled");
+                    $(".submitProductChanges").removeAttr("disabled");
                 }else{
                     kill();
                     window.parent.tb_remove();
