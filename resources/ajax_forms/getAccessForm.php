@@ -187,6 +187,13 @@
 					if(($i % 2)==1){
 						echo "<td>&nbsp;</td></tr>\n";
 					}
+
+					// @annelhote : add a new option to check all the sites at once
+					echo "<tr>";
+					echo "<td><input class='check_authorizedSiteAll' type='checkbox' value='all' onclick='checkAllAuthorizedSites(this);' /> " . _("All") . "</td>";
+					echo "<td>&nbsp;</td>";
+					echo "</tr>";
+
 					echo "</table>";
 				}
 				?>

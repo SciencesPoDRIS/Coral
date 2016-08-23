@@ -105,7 +105,11 @@ $(document).ready(function(){
 
 	 
  });
- 
+
+// @annelhote : Check all the sites
+function checkAllAuthorizedSites(e) {
+	$('input.check_authorizedSite').attr('checked', e.checked);
+}
 
 
 function submitAccess(){
