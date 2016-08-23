@@ -453,7 +453,7 @@
 
 		</table>
 		<?php if ($user->canEdit()){ ?>
-		<a href='ajax_forms.php?action=getUpdateProductForm&height=498&width=730&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox' id='editResource'><?php echo _("edit product details");?></a><br />
+		<a href='ajax_forms.php?action=getUpdateProductForm&height=650&width=730&modal=true&resourceID=<?php echo $resourceID; ?>' class='thickbox' id='editResource'><?php echo _("edit product details");?></a><br />
 		<?php } ?>
 
 		<br />
