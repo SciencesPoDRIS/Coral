@@ -757,7 +757,7 @@ msgstr "OCLC Holdings"
 #: ajax_forms/getAdminWorkflowForm.php:266
 #: ajax_forms/getAdminAlertDaysForm.php:34 ajax_forms/getOrderForm.php:160
 msgid "submit"
-msgstr "soumettre"
+msgstr "Enregistrer"
 
 #: resources/cataloging_edit.php:103 ajax_forms/getAccountForm.php:87
 #: ajax_forms/getAdminCurrencyUpdateForm.php:39

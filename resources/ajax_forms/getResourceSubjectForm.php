@@ -12,6 +12,15 @@
 
 ?>
 		<div id='div_updateForm'>
+
+		<!-- @aanelhote : Duplicate the "add" and "cancel" butons at the top -->
+		<td style='text-align:right'>
+			<!-- @annelhote : Add a "add" button for the whole list -->
+			<input type='button' value='<?php echo _("add");?>' onclick="addSubjects();">
+			<input type='button' value='<?php echo _("cancel");?>' onclick="window.parent.tb_remove(); return false;">
+		</td>
+		<br /><br />
+
 		<div class='formTitle' style='width:403px;'><span class='headerText' style='margin-left:7px;'></span><?php echo _("Add General / Detail Subject Link");?></div>
 
 	<?php

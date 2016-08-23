@@ -94,6 +94,17 @@
 ?>
 		<div id='div_resourceForm'>
 		<form id='resourceForm'>
+
+		<!-- @annelhote : Duplicate the "submit" and "cancel" butons at the top -->
+		<table class='noBorderTable' style='width:125px;'>
+			<tr>
+				<td style='text-align:left'><input type='button' value='<?php echo _("submit");?>' name='submitProductChanges' id ='submitProductChanges'></td>
+				<td style='text-align:right'><input type='button' value='<?php echo _("cancel");?>' onclick="kill(); tb_remove();"></td>
+			</tr>
+		</table>
+		<hr style='width:715px;margin:15px 0px 10px 0px;' />
+
+
 		<input type='hidden' name='editResourceID' id='editResourceID' value='<?php echo $resourceID; ?>'>
 
 		<div class='formTitle' style='width:715px; margin-bottom:5px;position:relative;'><span class='headerText'><?php echo _("Edit Resource");?></span></div>
