@@ -1317,7 +1317,6 @@ class Resource extends DatabaseObject {
 									LEFT JOIN ResourcePayment RPAY ON R.resourceID = RPAY.resourceID
 									LEFT JOIN ResourceNote RN ON R.resourceID = RN.resourceID
 									LEFT JOIN ResourceStep RS ON R.resourceID = RS.resourceID
-									LEFT JOIN ResourceTypeLink RTL ON R.resourceID = RTL.resourceId
                   LEFT JOIN IsbnOrIssn I ON R.resourceID = I.resourceID
                   ");
 
