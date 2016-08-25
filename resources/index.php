@@ -150,7 +150,7 @@ $_SESSION['ref_script']=$currentPage;
 	</tr>
 
 
-	<!-- @annelhote : Comment to checknge the default Status search field. Replace it by the new resource's status field. -->
+	<!-- @annelhote : Comment to change the default Status search field. Replace it by the new resource's status field. -->
 	<!--
 	<tr>
 	<td class='searchRow'><label for='searchStatusID'><b><?php // echo _("Status");?></b></label>
