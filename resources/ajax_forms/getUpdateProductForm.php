@@ -629,8 +629,8 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 								<tr class="tutoToFill" style="display: none;">
 									<td colspan="3">
 										<div>
-											<input type="text" style="width:250px;" value="" class="addTutoNameToFill" disabled />
-											<input type="text" style="width:250px;" value="" class="addTutoUrlToFill" disabled />
+											<input type="text" style="width:250px;" value="" class="addTutoNameToFill" />
+											<input type="text" style="width:250px;" value="" class="addTutoUrlToFill" />
 											<a href='#'>
 												<img src='images/cross.gif' alt='<?php echo _("remove ");?>' title='<?php echo _("remove ");?>' class='removeTuto' style="vertical-align: bottom;" />
 											</a>
@@ -644,8 +644,8 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 									<tr class="tutoFilled">
 										<td colspan="3">
 											<div>
-												<input type="text" style="width:250px;" value="<?php echo $tuto['name']; ?>" class="addTutoNameToFill" disabled />
-												<input type="text" style="width:250px;" value="<?php echo $tuto['url']; ?>" class="addTutoUrlToFill" disabled />
+												<input type="text" style="width:250px;" value="<?php echo $tuto['name']; ?>" class="addTutoNameToFill" />
+												<input type="text" style="width:250px;" value="<?php echo $tuto['url']; ?>" class="addTutoUrlToFill" />
 												<a href='#'>
 													<img src='images/cross.gif' alt='<?php echo _("remove "); ?>' title='<?php echo _("remove "); ?>' class='removeTuto' style="vertical-align: bottom;" />
 												</a>
