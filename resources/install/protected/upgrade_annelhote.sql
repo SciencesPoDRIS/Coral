@@ -67,7 +67,7 @@ CREATE TABLE  `ResourceTuto` (
 -- @annelhote : Add a field for resource's logo
 
 
-ALTER TABLE `Resource` ADD COLUMN `logo` varchar(45) default NULL AFTER `resourceStatusID`;
+ALTER TABLE `Resource` ADD COLUMN `logo` varchar(100) default NULL AFTER `resourceStatusID`;
 
 
 -- @annelhote : Add a field for resource's accessibility
