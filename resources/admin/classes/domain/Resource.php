@@ -1163,7 +1163,9 @@ class Resource extends DatabaseObject {
 			$whereAdd[] = "((R.resourceTypeID IS NULL) OR (R.resourceTypeID = '0'))";
 			$searchDisplay[] = "Resource Type: none";
 		}else if ($search['resourceTypeID']){
-			$whereAdd[] = "R.resourceTypeID = '" . $resource->db->escapeString($search['resourceTypeID']) . "'";
+			// @annelhote : Change the logical filter on resource's types
+			// $whereAdd[] = "R.resourceTypeID = '" . $resource->db->escapeString($search['resourceTypeID']) . "'";
+			$whereAdd[] = "RTL.resourceTypeId = '" . $resource->db->escapeString($search['resourceTypeID']) . "'";
 			$resourceType = new ResourceType(new NamedArguments(array('primaryKey' => $search['resourceTypeID'])));
     	$searchDisplay[] = "Resource Type: " . $resourceType->shortName;
 		}
@@ -1286,6 +1288,7 @@ class Resource extends DatabaseObject {
       // @annelhote : add "published" field in the select part of the request
       // @annelhote : add "type" field in the select part of the request
       // @annelhote : add "updateDate" field in the select part of the request
+      // @annelhote : add ResourceTypeLink table into the join in order to filter on it
       $select = "SELECT R.resourceID, R.titleText, AT.shortName acquisitionType, R.createLoginID, CU.firstName, CU.lastName, R.createDate, R.updateDate, S.shortName status, R.published, RT.shortName,
 						GROUP_CONCAT(DISTINCT A.shortName, I.isbnOrIssn ORDER BY A.shortName DESC SEPARATOR '<br />') aliases";
       $groupBy = "GROUP BY R.resourceID";
@@ -1314,6 +1317,7 @@ class Resource extends DatabaseObject {
 									LEFT JOIN ResourcePayment RPAY ON R.resourceID = RPAY.resourceID
 									LEFT JOIN ResourceNote RN ON R.resourceID = RN.resourceID
 									LEFT JOIN ResourceStep RS ON R.resourceID = RS.resourceID
+									LEFT JOIN ResourceTypeLink RTL ON R.resourceID = RTL.resourceId
                   LEFT JOIN IsbnOrIssn I ON R.resourceID = I.resourceID
                   ");
 
@@ -1339,6 +1343,7 @@ class Resource extends DatabaseObject {
 									LEFT JOIN Resource RC ON RC.resourceID = RRC.resourceID
 									LEFT JOIN Resource RP ON RP.resourceID = RRP.relatedResourceID
 									LEFT JOIN GeneralDetailSubjectLink GDLINK ON RSUB.generalDetailSubjectLinkID = GDLINK.generalDetailSubjectLinkID
+									LEFT JOIN ResourceTypeLink RTL ON R.resourceID = RTL.resourceId
                   " . implode("\n", $additional_joins) . "
 								  " . $whereStatement . "
 								  " . $groupBy;
