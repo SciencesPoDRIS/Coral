@@ -58,6 +58,7 @@ DROP TABLE IF EXISTS `ResourceTuto`;
 CREATE TABLE  `ResourceTuto` (
   `resourceTutoID` int(11) NOT NULL auto_increment,
   `resourceID` int(11) NOT NULL,
+  `rank` int(11) NOT NULL,
   `name` varchar(200) default NULL,
   `url` varchar(200) default NULL,
   PRIMARY KEY USING BTREE (`resourceTutoID`)

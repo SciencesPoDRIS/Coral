@@ -114,6 +114,7 @@
 			foreach($resourceTutosArray as $tuto) {
 				$resourceTuto = new ResourceTuto();
 				$resourceTuto->resourceID = $resourceID;
+				$resourceTuto->rank = $tuto->{'rank'};
 				$resourceTuto->name = $tuto->{'name'};
 				$resourceTuto->url = $tuto->{'url'};
 				try {

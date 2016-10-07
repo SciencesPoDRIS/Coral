@@ -18,6 +18,8 @@
 $(function(){
 
 
+    $("#sortable tbody").sortable();
+    $("#sortable").disableSelection();
 
     //bind all of the inputs
 
@@ -441,8 +443,8 @@ $('.addTuto').click(function() {
 
 // @annelhote : Implement function to remove tuto to a resource
 $('.removeTuto').live('click', function() {
-    $(this).parent().parent().fadeTo(400, 0, function () {
-        $(this).parent().remove();
+    $(this).parents('.tutoFilled').fadeTo(400, 0, function () {
+        $(this).remove();
     });
     return false;
 });
@@ -553,8 +555,9 @@ function submitProductForm(){
 
         // @annelhote : Set tutos array
         var arrayTutos = Array();
-        $('.tutoFilled').each(function() {
+        $('.tutoFilled').each(function(index, element) {
             arrayTutos.push({
+                'rank' : index + 1,
                 'name' : $(this).find('.addTutoNameToFill').val(),
                 'url' : $(this).find('.addTutoUrlToFill').val()});
         });

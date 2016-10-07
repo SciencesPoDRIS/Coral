@@ -620,19 +620,22 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 					</tr>
 					<tr>
 						<td>
-							<table class='noBorder smallPadding tutoTable' style='width:330px;margin:0px 20px 10px 20px;'>
+							<table id='sortable' class='noBorder smallPadding tutoTable' style='width:330px;margin:0px 20px 10px 20px;'>
 								<tr>
 									<td colspan='3'>
 										<hr style='width:310px;margin:0px 0px 5px 5px;' />
 									</td>
 								</tr>
-								<tr class="tutoToFill" style="display: none;">
-									<td colspan="3">
+								<tr class='tutoToFill ui-state-default' style='display: none;'>
+									<td colspan='3'>
 										<div>
-											<input type="text" style="width:250px;" value="" class="addTutoNameToFill" />
-											<input type="text" style="width:250px;" value="" class="addTutoUrlToFill" />
-											<a href='#'>
-												<img src='images/cross.gif' alt='<?php echo _("remove ");?>' title='<?php echo _("remove ");?>' class='removeTuto' style="vertical-align: bottom;" />
+											<span class='ui-icon ui-icon-arrowthick-2-n-s' style='width:20px; height: 20px; display: inline-block;'></span>
+											<div style='display: inline-block; width: 250px;'>
+												<input type='text' style='width:250px;' value='' class='addTutoNameToFill' />
+												<input type='text' style='width:250px;' value='' class='addTutoUrlToFill' />
+											</div>
+											<a href='#' style='display: inline-block;'>
+												<img src='images/cross.gif' alt='<?php echo _("remove "); ?>' title='<?php echo _("remove "); ?>' class='removeTuto' style="vertical-align: bottom;" />
 											</a>
 										</div>
 									</td>
@@ -641,12 +644,15 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 									if (count($tutosArray) > 0) {
 										foreach($tutosArray as $tuto) {
 								?>
-									<tr class="tutoFilled">
-										<td colspan="3">
+									<tr class='tutoFilled ui-state-default'>
+										<td colspan='3'>
 											<div>
-												<input type="text" style="width:250px;" value="<?php echo $tuto['name']; ?>" class="addTutoNameToFill" />
-												<input type="text" style="width:250px;" value="<?php echo $tuto['url']; ?>" class="addTutoUrlToFill" />
-												<a href='#'>
+												<span class='ui-icon ui-icon-arrowthick-2-n-s' style='width:20px; height: 20px; display: inline-block;'></span>
+												<div style='display: inline-block; width: 250px;'>
+													<input type="text" style="width:250px;" value="<?php echo $tuto['name']; ?>" class="addTutoNameToFill" />
+													<input type="text" style="width:250px;" value="<?php echo $tuto['url']; ?>" class="addTutoUrlToFill" />
+												</div>
+												<a href='#' style='display: inline-block;'>
 													<img src='images/cross.gif' alt='<?php echo _("remove "); ?>' title='<?php echo _("remove "); ?>' class='removeTuto' style="vertical-align: bottom;" />
 												</a>
 											</div>

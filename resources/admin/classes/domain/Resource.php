@@ -373,7 +373,7 @@ class Resource extends DatabaseObject {
 
 	// @annelhote : Get all the tutos from the resource
 	public function getTutos() {
-		$query = "SELECT * FROM ResourceTuto WHERE resourceID = '" . $this->resourceID . "' order by name";
+		$query = "SELECT * FROM ResourceTuto WHERE resourceID = '" . $this->resourceID . "' order by rank";
 		$result = $this->db->processQuery($query, 'assoc');
 		$objects = array();
 		//need to do this since it could be that there's only one request and this is how the dbservice returns result
