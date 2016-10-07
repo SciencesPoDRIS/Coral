@@ -269,7 +269,7 @@ msgstr "Notes additionnelles du catalogue"
 
 #: queue.php:22 queue.php:40 templates/header.php:117
 msgid "My Queue"
-msgstr "Ma queue"
+msgstr "Ma file"
 
 #: queue.php:51 ajax_htmldata/getOutstandingQueue.php:7
 msgid "Outstanding Tasks"
