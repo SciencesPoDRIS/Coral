@@ -776,7 +776,7 @@ msgstr "Enregistrer"
 #: ajax_forms/getAdminWorkflowForm.php:267
 #: ajax_forms/getAdminAlertDaysForm.php:35 ajax_forms/getOrderForm.php:161
 msgid "cancel"
-msgstr "annuler"
+msgstr "Annuler"
 
 #: resources/cataloging.php:106 ajax_htmldata/getAcquisitionsDetails.php:100
 #: ajax_htmldata/getAcquisitionsDetails.php:159
@@ -1241,7 +1241,7 @@ msgstr "Inclure information supplémentaire"
 
 #: ajax_forms/getNewResourceForm.php:294
 msgid "save"
-msgstr "enregistrer"
+msgstr "Enregistrer"
 
 #: ajax_forms/getContactForm.php:30
 msgid "Edit Contact"

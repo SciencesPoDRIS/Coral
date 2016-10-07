@@ -807,9 +807,10 @@
 
 		<hr style='width:745px;margin:15px 0px 10px 0px;' />
 
-		<table class='noBorderTable' style='width:175px;'>
+		<table class='noBorderTable' style='width:140px;'>
 			<tr>
-				<td style='text-align:left'><input type='button' value='<?php echo _("save");?>' class='submitResource' id ='save'></td>
+				<!-- @annelhote : Comment first button, because the second one is enough -->
+				<!-- <td style='text-align:left'><input type='button' value='<?php // echo _("save");?>' class='submitResource' id ='save'></td> -->
 				<td style='text-align:left'><input type='button' value='<?php echo _("submit");?>' class='submitResource' id ='progress'></td>
 				<td style='text-align:left'><input type='button' value='<?php echo _("cancel");?>' onclick="kill(); tb_remove()"></td>
 			</tr>
