@@ -1289,7 +1289,8 @@ class Resource extends DatabaseObject {
       // @annelhote : add "type" field in the select part of the request
       // @annelhote : add "updateDate" field in the select part of the request
       // @annelhote : add ResourceTypeLink table into the join in order to filter on it
-      $select = "SELECT R.resourceID, R.titleText, AT.shortName acquisitionType, R.createLoginID, CU.firstName, CU.lastName, R.createDate, R.updateDate, S.shortName status, R.published, RT.shortName,
+      // @annelhote : add ResourceStatus table into the join in order to display it
+      $select = "SELECT R.resourceID, R.titleText, AT.shortName acquisitionType, R.createLoginID, CU.firstName, CU.lastName, R.createDate, R.updateDate, S.shortName status, R.published, RT.shortName, RST.shortName resourceStatus, 
 						GROUP_CONCAT(DISTINCT A.shortName, I.isbnOrIssn ORDER BY A.shortName DESC SEPARATOR '<br />') aliases";
       $groupBy = "GROUP BY R.resourceID";
     }
@@ -1343,6 +1344,7 @@ class Resource extends DatabaseObject {
 									LEFT JOIN Resource RP ON RP.resourceID = RRP.relatedResourceID
 									LEFT JOIN GeneralDetailSubjectLink GDLINK ON RSUB.generalDetailSubjectLinkID = GDLINK.generalDetailSubjectLinkID
 									LEFT JOIN ResourceTypeLink RTL ON R.resourceID = RTL.resourceId
+									LEFT JOIN ResourceStatus RST ON R.resourceStatusID = RST.resourceStatusID
                   " . implode("\n", $additional_joins) . "
 								  " . $whereStatement . "
 								  " . $groupBy;

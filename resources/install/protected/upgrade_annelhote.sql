@@ -47,7 +47,7 @@ CREATE TABLE  `ResourceStatus` (
 ALTER TABLE `ResourceStatus` ADD INDEX `shortName` ( `shortName` );
 
 
-INSERT INTO `ResourceStatus` (resourceStatusID, shortName) values (1, 'test');
+INSERT INTO `ResourceStatus` (resourceStatusID, shortName) values (1, 'trial');
 INSERT INTO `ResourceStatus` (resourceStatusID, shortName) values (2, 'new');
 
 

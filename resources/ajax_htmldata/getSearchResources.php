@@ -126,7 +126,10 @@
 			<!-- @annelhote : Add new column to display the resource's updated date -->
 			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("Date Updated");?></td><td style='width:10px;vertical-align:top;'><a href='javascript:setOrder("R.updateDate","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;vertical-align:top;'><a href='javascript:setOrder("R.updateDate","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
 			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("Acquisition Type");?></td><td style='width:10px;vertical-align:top;'><a href='javascript:setOrder("acquisitionType","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;vertical-align:top;'><a href='javascript:setOrder("acquisitionType","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
-			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("Status");?></td><td style='width:10px;'><a href='javascript:setOrder("S.shortName","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;'><a href='javascript:setOrder("S.shortName","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
+			<!-- @annelhote : Hide column that displays the status -->
+			<!-- <th><table class='noBorderTable' style='width:100%'><tr><td><?php // echo _("Status");?></td><td style='width:10px;'><a href='javascript:setOrder("S.shortName","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;'><a href='javascript:setOrder("S.shortName","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th> -->
+			<!-- @annelhote : Add column to display the resource's status like 'New' or 'Trial' -->
+			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("Status");?></td><td style='width:10px;'><a href='javascript:setOrder("RST.shortName","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;'><a href='javascript:setOrder("RST.shortName","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
 			<!-- @annelhote : Add new column to display the resource's publication status -->
 			<th><table class='noBorderTable' style='width:100%'><tr><td><?php echo _("Published");?></td><td style='width:10px;'><a href='javascript:setOrder("R.published","asc");'><img src='images/arrowup.gif' border=0></a></td><td style='width:10px;'><a href='javascript:setOrder("R.published","desc");'><img src='images/arrowdown.gif' border=0></a></td></tr></table></th>
 			<!-- @annelhote : Add new column to display the resource's type -->
@@ -169,7 +172,11 @@
 				echo "<td $classAdd>" . format_date($resource['updateDate']) . "</td>";
 
 				echo "<td $classAdd>" . $resource['acquisitionType'] . "</td>";
-				echo "<td $classAdd>" . $resource['status'] . "</td>";
+
+				// @annelhote : Hide the default resource status
+				// echo "<td $classAdd>" . $resource['status'] . "</td>";
+				// @annelhote : Display the needed resource status like 'New' or 'Trial'
+				echo "<td $classAdd>" . ($resource['resourceStatus'] != '' ? _($resource['resourceStatus']) : '') . "</td>";
 
 				// @annelhote : add resource's publication status
 				echo "<td $classAdd>" . ($resource['published'] ? _('Yes') : _('No')) . "</td>";
