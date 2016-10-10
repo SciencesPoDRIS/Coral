@@ -609,7 +609,7 @@ $parentResourceObj = new Resource(new NamedArguments(array('primaryKey' => $pare
 								</tr>
 								<tr>
 									<td style='vertical-align:top;text-align:left;'>
-										<input type='text' value = '' style='width:250px;background:#f5f8fa;' class='changeAutocomplete addTutoUrl' />
+										<input type='text' value = 'https://acces-distant.sciences-po.fr/fork?' style='width:250px;background:#f5f8fa;' class='changeInput idleField addTutoUrl' />
 									</td>
 									<td style='vertical-align:top;text-align:left;width:40px;'>
 										<a href='#'><img src='images/add.gif' class='addTuto' alt='<?php echo _("add tuto");?>' title='<?php echo _("add tuto");?>' /></a>
