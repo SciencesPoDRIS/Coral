@@ -28,6 +28,8 @@
 		$resource->titleText_fr			= $_POST['titleText_fr'];
 		// @annelhote : Update resource's description translated in french
 		$resource->descriptionText_fr	= $_POST['descriptionText_fr'];
+		// @annelhote : Update resource's highlight status
+		$resource->highlight			= $_POST['highlight'];
 
 		$isbnarray = json_decode($_POST['isbnOrISSN']);
 		$resource->setIsbnOrIssn($isbnarray);
@@ -136,21 +138,15 @@
 		$aliasNameArray = array();
 		$aliasNameArray = explode(':::', $_POST['aliasNames']);
 
-
 		foreach ($aliasTypeArray as $key => $value){
 			if (($value) && ($aliasNameArray[$key])){
 				$alias = new Alias();
 				$alias->resourceID = $resourceID;
 				$alias->aliasTypeID = $value;
 				$alias->shortName = $aliasNameArray[$key];
-
 				$alias->save();
-
-
 			}
 		}
-
-
 
 		//now delete and then re-insert the organizations
 		$resource->removeResourceOrganizations();
@@ -160,14 +156,12 @@
 		$organizationArray = array();
 		$organizationArray = explode(':::', $_POST['organizations']);
 
-
 		foreach ($organizationRoleArray as $key => $value){
 			if (($value) && ($organizationArray[$key])){
 				$resourceOrganizationLink = new ResourceOrganizationLink();
 				$resourceOrganizationLink->resourceID = $resourceID;
 				$resourceOrganizationLink->organizationRoleID = $value;
 				$resourceOrganizationLink->organizationID = $organizationArray[$key];
-
 				$resourceOrganizationLink->save();
 			}
 		}

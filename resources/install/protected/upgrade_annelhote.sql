@@ -124,3 +124,9 @@ CREATE TABLE  `ResourceTypeLink` (
   `resourceTypeId` int(11) NOT NULL,
   PRIMARY KEY  USING BTREE (`resourceTypeLinkId`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+-- @annelhote : Add a table for resource's status
+
+
+ALTER TABLE `Resource` ADD COLUMN `highlight` int(11) default '0' AFTER `descriptionText_fr`;

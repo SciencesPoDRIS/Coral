@@ -1290,7 +1290,8 @@ class Resource extends DatabaseObject {
       // @annelhote : add "updateDate" field in the select part of the request
       // @annelhote : add ResourceTypeLink table into the join in order to filter on it
       // @annelhote : add ResourceStatus table into the join in order to display it
-      $select = "SELECT R.resourceID, R.titleText, AT.shortName acquisitionType, R.createLoginID, CU.firstName, CU.lastName, R.createDate, R.updateDate, S.shortName status, R.published, RT.shortName, RST.shortName resourceStatus, 
+      // @annelhote : add "highlight" field in the select part of the request
+      $select = "SELECT R.resourceID, R.titleText, AT.shortName acquisitionType, R.createLoginID, CU.firstName, CU.lastName, R.createDate, R.updateDate, S.shortName status, R.published, RT.shortName, RST.shortName resourceStatus, R.highlight, 
 						GROUP_CONCAT(DISTINCT A.shortName, I.isbnOrIssn ORDER BY A.shortName DESC SEPARATOR '<br />') aliases";
       $groupBy = "GROUP BY R.resourceID";
     }

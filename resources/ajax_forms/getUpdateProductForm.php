@@ -222,6 +222,20 @@
 					</td>
 					</tr>
 
+					<!-- @annelhote : Add resource's highlight status -->
+					<tr>
+					<td style='text-align:left;font-weight:bold;'><label for='highlight'><?php echo _("Highlight") . ":" ; ?></label></td>
+					<td>
+					<?php
+					if($resource->highlight) {
+						echo "<input type='checkbox' id='highlight' name='highlight' checked />";
+					} else {
+						echo "<input type='checkbox' id='highlight' name='highlight' />";
+					}
+					?>
+					</td>
+					</tr>
+
 					<!-- @annelhote : Add resource's publication comment -->
 					<tr class="publicationComment">
 					<td style='vertical-align:top;text-align:left;font-weight:bold;'><label for='publicationComment'><?php echo _("Publication Comment") . ":" ;?></label></td>
