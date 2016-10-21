@@ -2407,8 +2407,3 @@ msgstr "Description en français:"
 #: ajax_htmldata/getProductDetails.php:301
 msgid "French title"
 msgstr "Titre en français"
-
-#: ajax_htmldata/getSearchResources.php:124 @annelhote
-#: ajax_forms/getUpdateProductForm.php:227 @annelhote
-msgid "Highlight"
-msgstr "Mis en avant"

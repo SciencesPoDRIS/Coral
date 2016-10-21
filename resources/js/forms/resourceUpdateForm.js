@@ -22,33 +22,29 @@ $(function(){
     $("#sortable").disableSelection();
 
     //bind all of the inputs
-
     $(".submitProductChanges").click(function () {
         submitProductForm();
     });
-
 
     //do submit if enter is hit
     $('#titleText').keyup(function(e) {
         if(e.keyCode == 13) {
             submitProductForm();
         }
-    }); 
+    });
 
     //do submit if enter is hit
     $('#parentResourceName').keyup(function(e) {
         if(e.keyCode == 13) {
             submitProductForm();
         }
-    }); 
-
+    });
 
     $('#isbnOrISSN').keyup(function(e) {
         if(e.keyCode == 13) {
             submitProductForm();
         }
-    }); 
-
+    });
 
     $('#resourceFormatID').keyup(function(e) {
         if(e.keyCode == 13) {
@@ -141,11 +137,10 @@ $(function(){
     //once something has been selected, change the hidden input value
     $("input[name='parentResourceName']").result(function(event, data, formatted) {
         inputid = $(this).next();
-
         if (data[1] != $("#editResourceID").val()){
             inputid.val(data[1]);
             $(this).next().next().html('');
-        }else {
+        } else {
             $(this).next().next().html("<br />"+_("Error - Parent cannot be the same as the child"));
         }
     });
@@ -163,16 +158,12 @@ $(function(){
         formatResult: function(row) {
             return row[0].replace(/(<.+?>)/gi, '');
         }
-
     });
-
 
     //once something has been selected, change the hidden input value
     $(".organizationName").result(function(event, data, formatted) {
         $(this).parent().children('.organizationID').val(data[1]);
     });
-
-
 
     //the following are all to change the look of the inputs when they're clicked
     $('.changeDefault').live('focus', function(e) {
@@ -187,32 +178,22 @@ $(function(){
         }
     });
 
-
     $('.changeInput').addClass("idleField");
 
     $('.changeInput').live('focus', function() {
-
-
         $(this).removeClass("idleField").addClass("focusField");
-
         if(this.value != this.defaultValue){
             this.select();
         }
-
     });
-
 
     $('.changeInput').live('blur', function() {
         $(this).removeClass("focusField").addClass("idleField");
     });
 
-
-
-
     $('select').addClass("idleField");
     $('select').live('focus', function() {
         $(this).removeClass("idleField").addClass("focusField");
-
     });
 
     $('select').live('blur', function() {
@@ -224,9 +205,7 @@ $(function(){
         if (this.value == this.defaultValue){
             this.value = '';
         }
-
     });
-
 
     $('.changeAutocomplete').live('blur', function() {
         if(this.value == ''){
@@ -243,15 +222,12 @@ $(function(){
         $(this).removeClass("focusField").addClass("idleField");
     });
 
-
     $(".removeParent").live('click', function () {
         $(this).parent().fadeTo(400, 0, function () { 
             $(this).parent().remove();
         });
         return false;
     });
-
-
 
     $(".remove").live('click', function () {
         $(this).parent().parent().parent().fadeTo(400, 0, function () { 
@@ -260,27 +236,19 @@ $(function(){
         return false;
     });
 
-
-
     $(".addAlias").live('click', function () {
-
         var typeID = $('.newAliasTable').children().children().children().children('.aliasTypeID').val();
         var aName = $('.newAliasTable').children().children().children().children('.aliasName').val();
-
         if ((aName == '') || (aName == null) || (typeID == '') || (typeID == null)){
             $('#div_errorAlias').html(_("Error - Both fields are required"));
             return false;
-
-        }else{
+        } else {
             $('#div_errorAlias').html('');
-
             //first copy the new alias being added
             var originalTR = $('.newAliasTR').clone();
-
             //next append to to the existing table
             //it's too confusing to chain all of the children.
             $('.newAliasTR').appendTo('.aliasTable');
-
             $('.newAliasTR').children().children().children('.addAlias').attr({
                 src: 'images/cross.gif',
                 alt: _("remove this alias"),
@@ -292,21 +260,15 @@ $(function(){
             $('.aliasTypeID').css("background-color","");
             $('.aliasName').addClass('changeInput');
             $('.aliasName').addClass('idleField');
-
-
             $('.addAlias').removeClass('addAlias');
             $('.newAliasTR').removeClass('newAliasTR');
-
             //next put the original clone back, we just need to reset the values
             originalTR.appendTo('.newAliasTable');
             $('.newAliasTable').children().children().children().children('.aliasTypeID').val('');
             $('.newAliasTable').children().children().children().children('.aliasName').val('');
-
-
             return false;
         }
     });
-
 
     $(".addIsbn").live('click', function() {
         var newIsbn = $('.isbnOrISSN_new').clone();
@@ -543,12 +505,6 @@ function submitProductForm(){
             published = 1;
         }
 
-        // @annelhote : Set resource's highlight status
-        var highlight = 0;
-        if($('#highlight').attr('checked')) {
-            highlight = 1;
-        }
-
         // @annelhote : Format resource's publication date
         if(!$('.publicationComment').is(':visible')) {
             $('#publicationDate').val('');
@@ -583,13 +539,12 @@ function submitProductForm(){
         // @annelhote : Add resource's tutos
         // @annelhote : Add title translation in french
         // @annelhote : Add description translation in french
-        // @annelhote : Add resource's highlight status
         $('.submitProductChanges').attr("disabled", "disabled");
         $.ajax({
             type:       "POST",
             url:        "ajax_processing.php?action=submitProductUpdate",
             cache:      false,
-            data:       { resourceID: $("#editResourceID").val(), titleText: $("#titleText").val(), parentResourcesID: JSON.stringify(arrayparents), descriptionText: $("#descriptionText").val(), resourceURL: $("#resourceURL").val(), resourceAltURL: $("#resourceAltURL").val(), resourceFormatID: $("#resourceFormatID").val(), archiveInd: getCheckboxValue('archiveInd'), aliasTypes: aliasTypeList, aliasNames: aliasNameList, organizationRoles: organizationRoleList, organizations: organizationList, isbnOrISSN: JSON.stringify(arrayisbn), resourceLanguages: JSON.stringify(resourceLanguages), resourceStatusID: $("#resourceStatusID").val(), resourceLogo: $('#resourceLogoFileName').val(), accessibility: accessibility, published: published, publicationComment: $("#publicationComment").val(), publicationDate: d, tutoResource : JSON.stringify(arrayTutos), titleText_fr: $("#titleText_fr").val(), descriptionText_fr: $("#descriptionText_fr").val(), resourceTypes: JSON.stringify(resourceTypes), highlight: highlight },
+            data:       { resourceID: $("#editResourceID").val(), titleText: $("#titleText").val(), parentResourcesID: JSON.stringify(arrayparents), descriptionText: $("#descriptionText").val(), resourceURL: $("#resourceURL").val(), resourceAltURL: $("#resourceAltURL").val(), resourceFormatID: $("#resourceFormatID").val(), archiveInd: getCheckboxValue('archiveInd'), aliasTypes: aliasTypeList, aliasNames: aliasNameList, organizationRoles: organizationRoleList, organizations: organizationList, isbnOrISSN: JSON.stringify(arrayisbn), resourceLanguages: JSON.stringify(resourceLanguages), resourceStatusID: $("#resourceStatusID").val(), resourceLogo: $('#resourceLogoFileName').val(), accessibility: accessibility, published: published, publicationComment: $("#publicationComment").val(), publicationDate: d, tutoResource : JSON.stringify(arrayTutos), titleText_fr: $("#titleText_fr").val(), descriptionText_fr: $("#descriptionText_fr").val(), resourceTypes: JSON.stringify(resourceTypes) },
             success:    function(html) {
                 if (html){
                     $("#span_errors").html(html);

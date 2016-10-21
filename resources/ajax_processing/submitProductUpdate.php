@@ -28,8 +28,6 @@
 		$resource->titleText_fr			= $_POST['titleText_fr'];
 		// @annelhote : Update resource's description translated in french
 		$resource->descriptionText_fr	= $_POST['descriptionText_fr'];
-		// @annelhote : Update resource's highlight status
-		$resource->highlight			= $_POST['highlight'];
 
 		$isbnarray = json_decode($_POST['isbnOrISSN']);
 		$resource->setIsbnOrIssn($isbnarray);
