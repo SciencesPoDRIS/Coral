@@ -49,6 +49,7 @@ ALTER TABLE `ResourceStatus` ADD INDEX `shortName` ( `shortName` );
 
 INSERT INTO `ResourceStatus` (resourceStatusID, shortName) values (1, 'trial');
 INSERT INTO `ResourceStatus` (resourceStatusID, shortName) values (2, 'new');
+INSERT INTO `ResourceStatus` (resourceStatusID, shortName) values (3, 'highlight');
 
 
 -- @annelhote : Add a table for resource's tutos

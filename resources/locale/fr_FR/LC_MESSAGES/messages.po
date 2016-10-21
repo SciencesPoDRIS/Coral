@@ -2358,6 +2358,8 @@ msgid "trial"
 msgstr "En test"
 msgid "new"
 msgstr "Nouveauté"
+msgid "highlight"
+msgstr "Mise en avant"
 
 #: ajax_htmldata/getProductDetails.php:317 @annelhote
 #: ajax_forms/getUpdateProductForm.php:268 @annelhote
