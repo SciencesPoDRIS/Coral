@@ -97,7 +97,8 @@ $columnHeaders = array(
   "Catalog Record Source URL",
   "Catalog Records Available",
   "Catalog Records Loaded",
-  "OCLC Holdings Updated"
+  "OCLC Holdings Updated",
+  "Tutos"
 );
 
 echo array_to_csv_row(array("Resource Record Export " . format_date( date( 'Y-m-d' ))));
@@ -153,6 +154,8 @@ foreach($resourceArray as $resource) {
     $resource['numberRecordsAvailable'],
     $resource['numberRecordsLoaded'],
     ($resource['hasOclcHoldings'] ? 'Y' : 'N')
+    // @annelhote : Add tutos to exported data
+    , $resource['tutos']
   );
 	
 	echo array_to_csv_row($resourceValues);

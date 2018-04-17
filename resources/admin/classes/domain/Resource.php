@@ -365,7 +365,7 @@ class Resource extends DatabaseObject {
 		return $this->db->processQuery($query);
 	}
 
-	// @anelhote : Remove all the tutos from the resource
+	// @annelhote : Remove all the tutos from the resource
 	public function removeResourceTutos() {
 		$query = "DELETE FROM ResourceTuto WHERE resourceID = '" . $this->resourceID . "'";
 		return $this->db->processQuery($query);
@@ -1465,7 +1465,8 @@ class Resource extends DatabaseObject {
 		}
 
 
-		//now actually execute query
+		// now actually execute query
+		// @annelhote : Add tutos to exported data
 		$query = "SELECT R.resourceID, R.titleText, AT.shortName acquisitionType, CONCAT_WS(' ', CU.firstName, CU.lastName) createName,
 						R.createDate createDate, CONCAT_WS(' ', UU.firstName, UU.lastName) updateName,
 						R.updateDate updateDate, S.shortName status,
@@ -1482,7 +1483,8 @@ class Resource extends DatabaseObject {
 						GROUP_CONCAT(DISTINCT ADS.shortName ORDER BY ADS.shortName DESC SEPARATOR '; ') administeringSites,
 						GROUP_CONCAT(DISTINCT RP.titleText ORDER BY RP.titleText DESC SEPARATOR '; ') parentResources,
 						GROUP_CONCAT(DISTINCT RC.titleText ORDER BY RC.titleText DESC SEPARATOR '; ') childResources,
-						GROUP_CONCAT(DISTINCT RPAY.fundName, ': ', ROUND(COALESCE(RPAY.paymentAmount, 0) / 100, 2), ' ', RPAY.currencyCode, ' ', OT.shortName ORDER BY RPAY.paymentAmount ASC SEPARATOR '; ') payments
+						GROUP_CONCAT(DISTINCT RPAY.fundName, ': ', ROUND(COALESCE(RPAY.paymentAmount, 0) / 100, 2), ' ', RPAY.currencyCode, ' ', OT.shortName ORDER BY RPAY.paymentAmount ASC SEPARATOR '; ') payments,
+						GROUP_CONCAT(DISTINCT RTT.name ORDER BY RTT.rank ASC SEPARATOR '; ') tutos 
 								FROM Resource R
 									LEFT JOIN Alias A ON R.resourceID = A.resourceID
 									LEFT JOIN ResourceOrganizationLink ROL ON R.resourceID = ROL.resourceID
@@ -1516,7 +1518,8 @@ class Resource extends DatabaseObject {
 									LEFT JOIN AccessMethod AM ON AM.accessMethodID = R.accessMethodID
 									LEFT JOIN StorageLocation SL ON SL.storageLocationID = R.storageLocationID
 									LEFT JOIN UserLimit UL ON UL.userLimitID = R.userLimitID
-                  LEFT JOIN IsbnOrIssn I ON I.resourceID = R.resourceID
+									LEFT JOIN IsbnOrIssn I ON I.resourceID = R.resourceID
+									LEFT JOIN ResourceTuto RTT ON RTT.resourceID = R.resourceID
 									" . $licJoinAdd . "
 								" . $whereStatement . "
 								GROUP BY R.resourceID
